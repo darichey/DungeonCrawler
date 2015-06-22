@@ -42,4 +42,13 @@ public class World
         }
         return returnArray;
     }
+
+    public GameEntity getEntityAt(Vector2 pos)
+    {
+        for (GameEntity entity : entities)
+        {
+            if (entity.getBounds().contains(pos.x, pos.y)) return entity;
+        }
+        return null;
+    }
 }
