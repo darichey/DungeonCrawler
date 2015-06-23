@@ -1,36 +1,13 @@
 package com.darichey.dungeonCrawler.entity.base;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.math.Vector3;
 
 public abstract class GameEntity
 {
-    private Vector2 pos = new Vector2();
     private Rectangle bounds = new Rectangle();
-
-    public Vector2 getPos()
-    {
-        return pos;
-    }
-
-    public void setPos(Vector2 pos)
-    {
-        this.pos.set(pos);
-    }
-
-    public void setPosX(float posX)
-    {
-        setPos(new Vector2(posX, getPos().y));
-    }
-
-    public void setPosY(float posY)
-    {
-        setPos(new Vector2(getPos().x, posY));
-    }
+    public int height;
+    public int width;
 
     public Rectangle getBounds()
     {
@@ -46,6 +23,8 @@ public abstract class GameEntity
 
     public abstract String getName();
 
+    /*
+    REDO USING TILE MAP
     public boolean isOnScreen(OrthographicCamera camera)
     {
         Vector3 screenCoords = camera.project(new Vector3(getPos().x, getPos().y, 0));
@@ -58,4 +37,5 @@ public abstract class GameEntity
         }
         return false;
     }
+    */
 }

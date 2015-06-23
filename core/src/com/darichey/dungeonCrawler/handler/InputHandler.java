@@ -24,6 +24,8 @@ public class InputHandler extends InputAdapter
         Vector3 touchPos = new Vector3(screenX, screenY, 0);
         Vector3 worldCoords = camera.unproject(touchPos);
         GameEntity entity = world.getEntityAt(new Vector2(worldCoords.x, worldCoords.y));
+        /*
+        REDO WITH TILE MAP
         if (entity == null)
         {
             System.out.println("null at [" + Math.round(worldCoords.x) + ", " + Math.round(worldCoords.y) + "]");
@@ -32,6 +34,7 @@ public class InputHandler extends InputAdapter
         {
             System.out.println(entity.getName() + " at [" + entity.getPos().x + ", " + entity.getPos().y + "]");
         }
+        */
 
         return false;
     }

@@ -5,6 +5,7 @@ import com.badlogic.gdx.math.Vector2;
 
 public abstract class LivingEntity extends GameEntity
 {
+    private Vector2 pos = new Vector2();
     private Vector2 prevPos = new Vector2();
 
     public Vector2 getPrevPos()
@@ -17,11 +18,31 @@ public abstract class LivingEntity extends GameEntity
         this.prevPos.set(prevPos);
     }
 
-    @Override
+    public Vector2 getPos()
+    {
+        return pos;
+    }
+
     public void setPos(Vector2 pos)
     {
         setPrevPos(getPos());
         setBounds(new Rectangle(pos.x, pos.y, getBounds().width, getBounds().height));
-        super.setPos(pos);
+        this.pos = pos;
+    }
+
+    public void setPosX(float posX)
+    {
+        setPos(new Vector2(posX, getPos().y));
+    }
+
+    public void setPosY(float posY)
+    {
+        setPos(new Vector2(getPos().x, posY));
+    }
+
+    //TODO
+    public Vector2 getGridPosition()
+    {
+        return null;
     }
 }

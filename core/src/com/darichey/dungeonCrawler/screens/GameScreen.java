@@ -6,6 +6,7 @@ import com.darichey.dungeonCrawler.handler.CollisionHandler;
 import com.darichey.dungeonCrawler.handler.HandlerBase;
 import com.darichey.dungeonCrawler.handler.InputHandler;
 import com.darichey.dungeonCrawler.handler.MovementHandler;
+import com.darichey.dungeonCrawler.init.Entities;
 import com.darichey.dungeonCrawler.render.Renderer;
 import com.darichey.dungeonCrawler.world.World;
 
@@ -19,6 +20,8 @@ public class GameScreen extends ScreenAdapter
 
     public GameScreen()
     {
+        Entities.init();
+
         world = new World();
         renderer = new Renderer(world);
         movementHandler = new MovementHandler(world.player);
@@ -31,7 +34,7 @@ public class GameScreen extends ScreenAdapter
     {
         world.update();
         movementHandler.update();
-        collisionHandler.update();
+        //collisionHandler.update();
     }
 
     @Override

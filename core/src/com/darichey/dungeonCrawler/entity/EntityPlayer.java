@@ -12,7 +12,9 @@ public class EntityPlayer extends LivingEntity
     {
         setPos(pos);
         setPrevPos(pos);
-        setBounds(new Rectangle(pos.x, pos.y, 14, 22));
+        this.width = 14;
+        this.height = 22;
+        setBounds(new Rectangle(pos.x, pos.y, width, height));
     }
 
     @Override

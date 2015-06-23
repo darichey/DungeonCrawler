@@ -17,6 +17,9 @@ public class CollisionHandler extends HandlerBase
     public void update()
     {
         EntityPlayer player = world.player;
+
+        /*
+        REDO WITH TILE MAP
         for (EntityWall wall : world.getWalls())
         {
             if (player.getBounds().overlaps(wall.getBounds()))
@@ -27,5 +30,6 @@ public class CollisionHandler extends HandlerBase
                 //player.setPosY(player.getPos().y + 1);
             }
         }
+        */
     }
 }

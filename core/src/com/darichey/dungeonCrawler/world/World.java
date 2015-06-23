@@ -1,50 +1,40 @@
 package com.darichey.dungeonCrawler.world;
 
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.darichey.dungeonCrawler.entity.EntityPlayer;
-import com.darichey.dungeonCrawler.entity.EntityWall;
 import com.darichey.dungeonCrawler.entity.base.GameEntity;
+import com.darichey.dungeonCrawler.entity.base.LivingEntity;
+import com.darichey.dungeonCrawler.init.Entities;
 
 import java.util.ArrayList;
 
 public class World
 {
+    public static final int height = 100;
+    public static final int width  = 100;
+
     public EntityPlayer player;
-    public ArrayList<GameEntity> entities = new ArrayList<GameEntity>();
+    private EntityTileMap entityTileMap = new EntityTileMap();
+    private ArrayList<LivingEntity> livingEntities = new ArrayList<LivingEntity>();
 
     public World()
     {
         player = new EntityPlayer(new Vector2(0, 0));
-        entities.add(player);
+        livingEntities.add(player);
         generate();
+        //entityTileMap.visualize();
     }
 
     private void generate()
     {
-        for (int i = 0; i < 100; i++)
+        for (int y = 0; y < 5; y++)
         {
-            EntityWall wall = new EntityWall(new Vector2(i * 16, 0));
-            entities.add(wall);
+            for (int x = 0; x < 5; x++)
+            {
+                setEntityAt(Entities.wall, new Vector2(x, y));
+            }
         }
-
-        for (int i = 0; i < 100; i++)
-        {
-            EntityWall wall = new EntityWall(new Vector2(i * 16, 1600));
-            entities.add(wall);
-        }
-
-        for (int i = 0; i < 98; i++)
-        {
-            EntityWall wall = new EntityWall(new Vector2(0, 16 + i * 16));
-            entities.add(wall);
-        }
-
-        for (int i = 0; i < 98; i++)
-        {
-            EntityWall wall = new EntityWall(new Vector2(1600, 16 + i * 16));
-            entities.add(wall);
-        }
-
     }
 
     public void update()
@@ -52,25 +42,25 @@ public class World
 
     }
 
-    public ArrayList<EntityWall> getWalls()
-    {
-        ArrayList<EntityWall> returnArray = new ArrayList<EntityWall>();
-        for (GameEntity entity : entities)
-        {
-            if (entity instanceof EntityWall)
-            {
-                returnArray.add((EntityWall) entity);
-            }
-        }
-        return returnArray;
-    }
-
     public GameEntity getEntityAt(Vector2 pos)
     {
-        for (GameEntity entity : entities)
-        {
-            if (entity.getBounds().contains(pos.x, pos.y)) return entity;
-        }
-        return null;
+        return entityTileMap.getEntityAt(pos);
+    }
+
+    public void setEntityAt(GameEntity entity, Vector2 pos)
+    {
+        //FIXME: Don't use * 16, use a viewport so it looks good at different resolutions
+        entity.setBounds(new Rectangle(pos.x * 16, pos.y * 16, entity.width, entity.height));
+        entityTileMap.putEntityAt(entity, pos);
+    }
+
+    public ArrayList<LivingEntity> getLivingEntities()
+    {
+        return livingEntities;
+    }
+
+    public EntityTileMap getEntityTileMap()
+    {
+        return entityTileMap;
     }
 }

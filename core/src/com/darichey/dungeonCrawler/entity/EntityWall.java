@@ -8,10 +8,10 @@ import com.darichey.dungeonCrawler.entity.base.GameEntity;
 
 public class EntityWall extends GameEntity
 {
-    public EntityWall(Vector2 pos)
+    public EntityWall()
     {
-        setPos(pos);
-        setBounds(new Rectangle(pos.x, pos.y, 16, 16));
+        this.width = 16;
+        this.height = 16;
     }
 
     @Override

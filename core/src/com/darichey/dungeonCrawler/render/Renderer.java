@@ -6,9 +6,12 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.darichey.dungeonCrawler.entity.base.GameEntity;
+import com.darichey.dungeonCrawler.entity.base.LivingEntity;
+import com.darichey.dungeonCrawler.world.EntityTileMap;
 import com.darichey.dungeonCrawler.world.World;
 
 public class Renderer
@@ -18,7 +21,7 @@ public class Renderer
     private ShapeRenderer debugRenderer = new ShapeRenderer();
     public OrthographicCamera camera;
     public Viewport viewport;
-    private boolean debugRender = true;
+    private boolean debugRender = false;
 
     public Renderer(World world)
     {
@@ -39,11 +42,25 @@ public class Renderer
 
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
-        for (GameEntity entity : world.entities)
+        // Redo rendering with tile map
+        for (int y = 0; y < World.height; y++)
         {
-            if (entity.isOnScreen(camera))
-                batch.draw(entity.getTexture(), entity.getPos().x, entity.getPos().y);
+            for (int x = 0; x < World.width; x++)
+            {
+                GameEntity entity = world.getEntityTileMap().getEntityAt(new Vector2(x, y));
+                if (entity != null)
+                {
+                    // Don't do * 16 use a viewport instead so it looks nice at different resolutions
+                    batch.draw(entity.getTexture(), x * 16, y * 16);
+                }
+            }
         }
+
+        for (LivingEntity entity : world.getLivingEntities())
+        {
+            batch.draw(entity.getTexture(), entity.getPos().x, entity.getPos().y);
+        }
+
         if (debugRender) renderDebug();
 
         batch.end();
@@ -54,11 +71,26 @@ public class Renderer
         debugRenderer.setProjectionMatrix(camera.combined);
         debugRenderer.begin(ShapeRenderer.ShapeType.Line);
         debugRenderer.setColor(1, 1, 0, 1);
-        for (GameEntity entity : world.entities)
+        // Redo debug rendering with tile map
+        for (int y = 0; y < World.height; y++)
+        {
+            for (int x = 0; x < World.width; x++)
+            {
+                GameEntity entity = world.getEntityTileMap().getEntityAt(new Vector2(x, y));
+                if (entity != null)
+                {
+                    Rectangle bounds = entity.getBounds();
+                    debugRenderer.rect(bounds.x, bounds.y, bounds.width, bounds.height);
+                }
+            }
+        }
+
+        for (LivingEntity entity : world.getLivingEntities())
         {
             Rectangle bounds = entity.getBounds();
             debugRenderer.rect(bounds.x, bounds.y, bounds.width, bounds.height);
         }
+
         debugRenderer.end();
     }
 }
