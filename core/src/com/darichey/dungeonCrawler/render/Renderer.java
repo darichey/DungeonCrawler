@@ -6,10 +6,8 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.darichey.dungeonCrawler.entity.EntityWall;
 import com.darichey.dungeonCrawler.entity.base.GameEntity;
 import com.darichey.dungeonCrawler.world.World;
 
@@ -43,11 +41,12 @@ public class Renderer
         batch.begin();
         for (GameEntity entity : world.entities)
         {
-            batch.draw(entity.getTexture(), entity.getPos().x, entity.getPos().y);
+            if (entity.isOnScreen(camera))
+                batch.draw(entity.getTexture(), entity.getPos().x, entity.getPos().y);
         }
-        batch.end();
-
         if (debugRender) renderDebug();
+
+        batch.end();
     }
 
     public void renderDebug()

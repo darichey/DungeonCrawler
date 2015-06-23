@@ -14,15 +14,37 @@ public class World
 
     public World()
     {
-        player = new EntityPlayer(new Vector2(800, 450));
+        player = new EntityPlayer(new Vector2(0, 0));
         entities.add(player);
         generate();
     }
 
     private void generate()
     {
-        EntityWall wall = new EntityWall(new Vector2(800, 400));
-        entities.add(wall);
+        for (int i = 0; i < 100; i++)
+        {
+            EntityWall wall = new EntityWall(new Vector2(i * 16, 0));
+            entities.add(wall);
+        }
+
+        for (int i = 0; i < 100; i++)
+        {
+            EntityWall wall = new EntityWall(new Vector2(i * 16, 1600));
+            entities.add(wall);
+        }
+
+        for (int i = 0; i < 98; i++)
+        {
+            EntityWall wall = new EntityWall(new Vector2(0, 16 + i * 16));
+            entities.add(wall);
+        }
+
+        for (int i = 0; i < 98; i++)
+        {
+            EntityWall wall = new EntityWall(new Vector2(1600, 16 + i * 16));
+            entities.add(wall);
+        }
+
     }
 
     public void update()

@@ -1,8 +1,11 @@
 package com.darichey.dungeonCrawler.entity.base;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
 
 public abstract class GameEntity
 {
@@ -42,4 +45,17 @@ public abstract class GameEntity
     public abstract Texture getTexture();
 
     public abstract String getName();
+
+    public boolean isOnScreen(OrthographicCamera camera)
+    {
+        Vector3 screenCoords = camera.project(new Vector3(getPos().x, getPos().y, 0));
+        if (screenCoords.x < Gdx.graphics.getWidth() + 32 && screenCoords.x > -32)
+        {
+            if (screenCoords.y < Gdx.graphics.getHeight() + 32 && screenCoords.y > -32)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 }

@@ -1,7 +1,6 @@
 package com.darichey.dungeonCrawler.screens;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.ScreenAdapter;
 import com.darichey.dungeonCrawler.handler.CollisionHandler;
 import com.darichey.dungeonCrawler.handler.HandlerBase;
@@ -40,5 +39,11 @@ public class GameScreen extends ScreenAdapter
     {
         update();
         renderer.render();
+    }
+
+    @Override
+    public void resize(int width, int height)
+    {
+        renderer.viewport.update(width, height);
     }
 }
