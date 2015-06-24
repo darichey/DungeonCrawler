@@ -7,6 +7,7 @@ public abstract class LivingEntity extends GameEntity
 {
     private Vector2 pos = new Vector2();
     private Vector2 prevPos = new Vector2();
+    private Rectangle bounds = new Rectangle();
 
     public Vector2 getPrevPos()
     {
@@ -38,6 +39,17 @@ public abstract class LivingEntity extends GameEntity
     public void setPosY(float posY)
     {
         setPos(new Vector2(getPos().x, posY));
+    }
+
+
+    public Rectangle getBounds()
+    {
+        return bounds;
+    }
+
+    public void setBounds(Rectangle bounds)
+    {
+        this.bounds = bounds;
     }
 
     //TODO

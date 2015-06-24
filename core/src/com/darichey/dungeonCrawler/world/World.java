@@ -28,12 +28,17 @@ public class World
 
     private void generate()
     {
-        for (int y = 0; y < 5; y++)
+        //for (int y = 0; y < 5; y++)
         {
-            for (int x = 0; x < 5; x++)
+            for (int x = 0; x < 50; x++)
             {
-                setEntityAt(Entities.wall, new Vector2(x, y));
+                setEntityAt(Entities.wall, new Vector2(x, 0));
             }
+        }
+
+        for ( int y = 0; y < 27; y++)
+        {
+            setEntityAt(Entities.wall, new Vector2(0, y + 1));
         }
     }
 
@@ -49,8 +54,6 @@ public class World
 
     public void setEntityAt(GameEntity entity, Vector2 pos)
     {
-        //FIXME: Don't use * 16, use a viewport so it looks good at different resolutions
-        entity.setBounds(new Rectangle(pos.x * 16, pos.y * 16, entity.width, entity.height));
         entityTileMap.putEntityAt(entity, pos);
     }
 

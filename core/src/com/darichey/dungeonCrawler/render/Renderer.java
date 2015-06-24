@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.darichey.dungeonCrawler.entity.base.GameEntity;
@@ -21,7 +22,7 @@ public class Renderer
     private ShapeRenderer debugRenderer = new ShapeRenderer();
     public OrthographicCamera camera;
     public Viewport viewport;
-    private boolean debugRender = false;
+    private boolean debugRender = true;
 
     public Renderer(World world)
     {
@@ -47,11 +48,14 @@ public class Renderer
         {
             for (int x = 0; x < World.width; x++)
             {
-                GameEntity entity = world.getEntityTileMap().getEntityAt(new Vector2(x, y));
-                if (entity != null)
+                if (positionIsOnScreen(new Vector2(x ,y)))
                 {
-                    // Don't do * 16 use a viewport instead so it looks nice at different resolutions
-                    batch.draw(entity.getTexture(), x * 16, y * 16);
+                    GameEntity entity = world.getEntityTileMap().getEntityAt(new Vector2(x, y));
+                    if (entity != null)
+                    {
+                        //FIXME: Don't do * 16 use a viewport instead so it looks nice at different resolutions
+                        batch.draw(entity.getTexture(), x * 16, y * 16);
+                    }
                 }
             }
         }
@@ -60,10 +64,9 @@ public class Renderer
         {
             batch.draw(entity.getTexture(), entity.getPos().x, entity.getPos().y);
         }
+        batch.end();
 
         if (debugRender) renderDebug();
-
-        batch.end();
     }
 
     public void renderDebug()
@@ -76,11 +79,15 @@ public class Renderer
         {
             for (int x = 0; x < World.width; x++)
             {
-                GameEntity entity = world.getEntityTileMap().getEntityAt(new Vector2(x, y));
-                if (entity != null)
+                if (positionIsOnScreen(new Vector2(x, y)))
                 {
-                    Rectangle bounds = entity.getBounds();
-                    debugRenderer.rect(bounds.x, bounds.y, bounds.width, bounds.height);
+                    GameEntity entity = world.getEntityTileMap().getEntityAt(new Vector2(x, y));
+                    if (entity != null)
+                    {
+                        //FIXME: Don't do * 16 use a viewport instead so it looks nice at different resolutions
+                        Rectangle bounds = world.getEntityTileMap().getBoundsOfEntity(entity, new Vector2(x, y));
+                        debugRenderer.rect(bounds.x * 16, bounds.y * 16, bounds.width, bounds.height);
+                    }
                 }
             }
         }
@@ -92,5 +99,20 @@ public class Renderer
         }
 
         debugRenderer.end();
+    }
+
+    public boolean positionIsOnScreen(Vector2 worldPos)
+    {
+        //FIXME: Don't use 16
+        Vector2 pixelPos = new Vector2(worldPos.x * 16, worldPos.y * 16);
+        Vector3 screenPos = camera.project(new Vector3(pixelPos.x, pixelPos.y, 0));
+        if (screenPos.x < Gdx.graphics.getWidth() + 32 && screenPos.x > -32)
+        {
+            if (screenPos.y < Gdx.graphics.getHeight() + 32 && screenPos.y > -32)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }
