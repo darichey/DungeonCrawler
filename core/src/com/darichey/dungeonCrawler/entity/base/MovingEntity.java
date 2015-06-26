@@ -3,7 +3,7 @@ package com.darichey.dungeonCrawler.entity.base;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
-public abstract class LivingEntity extends GameEntity
+public abstract class MovingEntity extends GameEntity
 {
     private Vector2 pos = new Vector2();
     private Vector2 prevPos = new Vector2();

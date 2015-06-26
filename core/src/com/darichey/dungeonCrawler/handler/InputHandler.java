@@ -12,6 +12,7 @@ public class InputHandler extends InputAdapter
     private World world;
     private OrthographicCamera camera;
 
+
     public InputHandler(World world, OrthographicCamera camera)
     {
         this.world = world;
@@ -22,20 +23,15 @@ public class InputHandler extends InputAdapter
     public boolean touchDown(int screenX, int screenY, int pointer, int button)
     {
         Vector3 touchPos = new Vector3(screenX, screenY, 0);
-        Vector3 worldCoords = camera.unproject(touchPos);
-        GameEntity entity = world.getEntityAt(new Vector2(worldCoords.x, worldCoords.y));
-        /*
-        REDO WITH TILE MAP
-        if (entity == null)
+        Vector3 pixelPos = camera.unproject(touchPos);
+        System.out.println(pixelPos.x + ", " + pixelPos.y);
+        Vector2 worldPos = new Vector2((float)Math.floor(pixelPos.x / 16), (float)Math.floor(pixelPos.y / 16));
+        System.out.println(worldPos.x + ", " + worldPos.y);
+        if (world.getEntityAt(worldPos) == null)
         {
-            System.out.println("null at [" + Math.round(worldCoords.x) + ", " + Math.round(worldCoords.y) + "]");
-        }
-        else
-        {
-            System.out.println(entity.getName() + " at [" + entity.getPos().x + ", " + entity.getPos().y + "]");
-        }
-        */
 
+        }
+        System.out.println(world.getEntityAt(worldPos).getName());
         return false;
     }
 }

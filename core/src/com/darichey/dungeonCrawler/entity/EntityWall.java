@@ -12,12 +12,7 @@ public class EntityWall extends GameEntity
     {
         this.width = 16;
         this.height = 16;
-    }
-
-    @Override
-    public Texture getTexture()
-    {
-        return new Texture(Gdx.files.internal("wall.png"));
+        this.texture = new Texture(Gdx.files.internal("wall.png"));
     }
 
     @Override

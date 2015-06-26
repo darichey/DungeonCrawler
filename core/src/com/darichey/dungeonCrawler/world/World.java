@@ -1,10 +1,9 @@
 package com.darichey.dungeonCrawler.world;
 
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.darichey.dungeonCrawler.entity.EntityPlayer;
 import com.darichey.dungeonCrawler.entity.base.GameEntity;
-import com.darichey.dungeonCrawler.entity.base.LivingEntity;
+import com.darichey.dungeonCrawler.entity.base.MovingEntity;
 import com.darichey.dungeonCrawler.init.Entities;
 
 import java.util.ArrayList;
@@ -16,29 +15,34 @@ public class World
 
     public EntityPlayer player;
     private EntityTileMap entityTileMap = new EntityTileMap();
-    private ArrayList<LivingEntity> livingEntities = new ArrayList<LivingEntity>();
+    private ArrayList<MovingEntity> movingEntities = new ArrayList<MovingEntity>();
 
     public World()
     {
         player = new EntityPlayer(new Vector2(0, 0));
-        livingEntities.add(player);
+        movingEntities.add(player);
         generate();
         //entityTileMap.visualize();
     }
 
     private void generate()
     {
-        //for (int y = 0; y < 5; y++)
+        for (int x = 0; x < 50; x++)
         {
-            for (int x = 0; x < 50; x++)
-            {
-                setEntityAt(Entities.wall, new Vector2(x, 0));
-            }
+            setEntityAt(Entities.wall, new Vector2(x, 0));
         }
 
-        for ( int y = 0; y < 27; y++)
+        for (int y = 0; y < 27; y++)
         {
             setEntityAt(Entities.wall, new Vector2(0, y + 1));
+        }
+
+        for (int y = 0; y < 25; y++)
+        {
+            for (int x = 0; x < 25; x++)
+            {
+                setEntityAt(Entities.wall, new Vector2(x + 5, y + 5));
+            }
         }
     }
 
@@ -57,9 +61,9 @@ public class World
         entityTileMap.putEntityAt(entity, pos);
     }
 
-    public ArrayList<LivingEntity> getLivingEntities()
+    public ArrayList<MovingEntity> getMovingEntities()
     {
-        return livingEntities;
+        return movingEntities;
     }
 
     public EntityTileMap getEntityTileMap()
