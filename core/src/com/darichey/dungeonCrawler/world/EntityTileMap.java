@@ -12,14 +12,14 @@ public class EntityTileMap
 
     public void putEntityAt(GameEntity entity, Vector2 worldPos)
     {
-        int posX = Math.round(worldPos.x);
-        int posY = Math.round(worldPos.y);
+        int posX = (int)Math.floor(worldPos.x);
+        int posY = (int)Math.floor(worldPos.y);
         entityMap[posX][posY] = EntityRegistry.getIDForEntity(entity);
     }
 
     public GameEntity getEntityAt(Vector2 worldPos)
     {
-        int id = entityMap[Math.round(worldPos.x)][Math.round(worldPos.y)];
+        int id = entityMap[(int)Math.floor(worldPos.x)][(int)Math.floor(worldPos.y)];
         return EntityRegistry.getEntityFromID(id);
     }
 

@@ -27,7 +27,7 @@ public class CollisionHandler extends HandlerBase
                 Rectangle otherEntityBounds = new Rectangle(wallPos.x, wallPos.y, Entities.wall.width, Entities.wall.height);
                 if (entityBounds.overlaps(otherEntityBounds))
                 {
-                    System.out.println("overlap");
+
                 }
             }
         }

@@ -1,5 +1,6 @@
 package com.darichey.dungeonCrawler.world;
 
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.darichey.dungeonCrawler.entity.EntityPlayer;
 import com.darichey.dungeonCrawler.entity.base.GameEntity;
@@ -52,6 +53,18 @@ public class World
 
     public GameEntity getEntityAt(Vector2 pos)
     {
+        GameEntity entity = entityTileMap.getEntityAt(pos);
+        if (entity == null)
+        {
+            for (DynamicEntity dynamicEntity : getDynamicEntities())
+            {
+                Rectangle bounds = new Rectangle(dynamicEntity.getPos().x, dynamicEntity.getPos().y, dynamicEntity.width, dynamicEntity.height);
+                if (bounds.contains(pos.x, pos.y))
+                {
+                    return dynamicEntity;
+                }
+            }
+        }
         return entityTileMap.getEntityAt(pos);
     }
 

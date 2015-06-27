@@ -23,15 +23,16 @@ public class InputHandler extends InputAdapter
     public boolean touchDown(int screenX, int screenY, int pointer, int button)
     {
         Vector3 touchPos = new Vector3(screenX, screenY, 0);
-        Vector3 pixelPos = camera.unproject(touchPos);
-        System.out.println(pixelPos.x + ", " + pixelPos.y);
-        Vector2 worldPos = new Vector2((float)Math.floor(pixelPos.x / 16), (float)Math.floor(pixelPos.y / 16));
-        System.out.println(worldPos.x + ", " + worldPos.y);
-        if (world.getEntityAt(worldPos) == null)
+        Vector3 worldPos = camera.unproject(touchPos);
+        GameEntity entity = world.getEntityAt(new Vector2(worldPos.x, worldPos.y));
+        if (entity == null)
         {
-
+            System.out.println("Null at [" + worldPos.x + ", " + worldPos.y + "]");
         }
-        System.out.println(world.getEntityAt(worldPos).getName());
+        else
+        {
+            System.out.println(entity.getName() + " at [" + Math.floor(worldPos.x) + ", " + Math.floor(worldPos.y) + "]");
+        }
         return false;
     }
 }
