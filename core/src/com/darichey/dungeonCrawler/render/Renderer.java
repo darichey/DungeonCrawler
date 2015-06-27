@@ -20,8 +20,8 @@ public class Renderer
     public OrthographicCamera camera;
     private boolean debugRender = true;
 
-    private int VIEWPORT_WIDTH  = 50;
-    private int VIEWPORT_HEIGHT = 30;
+    private int VIEWPORT_WIDTH  = 60;
+    private int VIEWPORT_HEIGHT = 32;
 
     public Renderer(World world)
     {
@@ -103,9 +103,10 @@ public class Renderer
     {
         Vector2 pixelPos = new Vector2(worldPos.x, worldPos.y);
         Vector3 screenPos = camera.project(new Vector3(pixelPos.x, pixelPos.y, 0));
-        if (screenPos.x < Gdx.graphics.getWidth() + 2 && screenPos.x > -2)
+
+        if (screenPos.x > -32 && screenPos.x < Gdx.graphics.getWidth() + 32)
         {
-            if (screenPos.y < Gdx.graphics.getHeight() + 2 && screenPos.y > -2)
+            if (screenPos.y > -32 && screenPos.y < Gdx.graphics.getHeight() + 32)
             {
                 return true;
             }

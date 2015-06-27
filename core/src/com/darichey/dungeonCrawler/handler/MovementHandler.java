@@ -18,22 +18,22 @@ public class MovementHandler extends HandlerBase
     {
         if (isLeftKeyPressed())
         {
-            player.setPosX(player.getPos().x - 1);
+            player.setPosX(player.getPos().x - .1f);
         }
 
         if (isRightKeyPressed())
         {
-            player.setPosX(player.getPos().x + 1);
+            player.setPosX(player.getPos().x + .1f);
         }
 
         if (isDownKeyPressed())
         {
-            player.setPosY(player.getPos().y - 1);
+            player.setPosY(player.getPos().y - .1f);
         }
 
         if (isUpKeyPressed())
         {
-            player.setPosY(player.getPos().y + 1);
+            player.setPosY(player.getPos().y + .1f);
         }
     }
 
