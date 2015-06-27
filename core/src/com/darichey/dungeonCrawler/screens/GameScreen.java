@@ -10,6 +10,9 @@ import com.darichey.dungeonCrawler.init.Entities;
 import com.darichey.dungeonCrawler.render.Renderer;
 import com.darichey.dungeonCrawler.world.World;
 
+/**
+ * Main playing screen for the game
+ */
 public class GameScreen extends ScreenAdapter
 {
     private World world;

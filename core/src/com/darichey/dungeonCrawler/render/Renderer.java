@@ -12,6 +12,9 @@ import com.darichey.dungeonCrawler.entity.base.GameEntity;
 import com.darichey.dungeonCrawler.entity.base.DynamicEntity;
 import com.darichey.dungeonCrawler.world.World;
 
+/**
+ * Renders all game objects within the world
+ */
 public class Renderer
 {
     private SpriteBatch batch;

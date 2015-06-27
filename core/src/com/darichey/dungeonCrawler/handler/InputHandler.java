@@ -7,6 +7,9 @@ import com.badlogic.gdx.math.Vector3;
 import com.darichey.dungeonCrawler.entity.base.GameEntity;
 import com.darichey.dungeonCrawler.world.World;
 
+/**
+ * Handles mouse and keyboard input
+ */
 public class InputHandler extends InputAdapter
 {
     private World world;

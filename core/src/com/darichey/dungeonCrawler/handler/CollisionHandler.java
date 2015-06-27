@@ -3,10 +3,12 @@ package com.darichey.dungeonCrawler.handler;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.darichey.dungeonCrawler.entity.base.DynamicEntity;
-import com.darichey.dungeonCrawler.entity.base.GameEntity;
 import com.darichey.dungeonCrawler.init.Entities;
 import com.darichey.dungeonCrawler.world.World;
 
+/**
+ * Detects and handles entity collision
+ */
 public class CollisionHandler extends HandlerBase
 {
     private World world;

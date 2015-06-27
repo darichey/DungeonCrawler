@@ -6,8 +6,12 @@ import com.darichey.dungeonCrawler.entity.register.EntityRegistry;
 
 import java.util.ArrayList;
 
+/**
+ * Generic tile map storing the NON-Dynamic entities in the world
+ */
 public class EntityTileMap
 {
+    /** Underlying 2D array. Each position in the array stores an entity's ID found in {@link EntityRegistry} **/
     private int[][] entityMap = new int[World.width][World.height];
 
     public void putEntityAt(GameEntity entity, Vector2 worldPos)

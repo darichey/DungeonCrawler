@@ -6,6 +6,9 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.darichey.dungeonCrawler.entity.base.DynamicEntity;
 
+/**
+ * The player entity of the game
+ */
 public class EntityPlayer extends DynamicEntity
 {
     public EntityPlayer(Vector2 pos)

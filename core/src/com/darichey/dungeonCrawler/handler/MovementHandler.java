@@ -4,6 +4,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.darichey.dungeonCrawler.entity.EntityPlayer;
 
+/**
+ * Handles player movement
+ */
 public class MovementHandler extends HandlerBase
 {
     private EntityPlayer player;
