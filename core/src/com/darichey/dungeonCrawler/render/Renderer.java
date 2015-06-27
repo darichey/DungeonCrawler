@@ -25,25 +25,16 @@ public class Renderer
     private World world;
     private ShapeRenderer debugRenderer = new ShapeRenderer();
     public OrthographicCamera camera;
-    public Viewport viewport;
     private boolean debugRender = true;
 
-    // Broken
-    private Stage stage = new Stage();
-    private Label.LabelStyle labelStyle = new Label.LabelStyle(new BitmapFont(), Color.RED);
-    private Label fpsLabel = new Label("FPS: " + Gdx.graphics.getFramesPerSecond(), labelStyle);
+    private int VIEWPORT_WIDTH  = 50;
+    private int VIEWPORT_HEIGHT = 30;
 
     public Renderer(World world)
     {
         this.world = world;
         batch = new SpriteBatch();
-        camera = new OrthographicCamera();
-        viewport = new FitViewport(800, 450, camera);
-        viewport.apply();
-
-        // Broken
-        fpsLabel.setPosition(Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
-        stage.addActor(fpsLabel);
+        camera = new OrthographicCamera(VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
     }
 
     public void render()
@@ -66,8 +57,7 @@ public class Renderer
                     GameEntity entity = world.getEntityTileMap().getEntityAt(new Vector2(x, y));
                     if (entity != null)
                     {
-                        //FIXME: Don't do * 16 use a viewport instead so it looks nice at different resolutions
-                        batch.draw(entity.getTexture(), x * 16, y * 16);
+                        batch.draw(entity.getTexture(), x, y, entity.width, entity.height);
                     }
                 }
             }
@@ -75,7 +65,9 @@ public class Renderer
 
         for (MovingEntity entity : world.getMovingEntities())
         {
-            batch.draw(entity.getTexture(), entity.getPos().x, entity.getPos().y);
+            System.out.println(entity.getName());
+            if (positionIsOnScreen(entity.getPos()))
+                batch.draw(entity.getTexture(), entity.getPos().x, entity.getPos().y, entity.width, entity.height);
         }
 
         batch.end();
@@ -88,7 +80,7 @@ public class Renderer
         debugRenderer.setProjectionMatrix(camera.combined);
         debugRenderer.begin(ShapeRenderer.ShapeType.Line);
         debugRenderer.setColor(1, 1, 0, 1);
-        // Redo debug rendering with tile map
+
         for (int y = 0; y < World.height; y++)
         {
             for (int x = 0; x < World.width; x++)
@@ -98,9 +90,8 @@ public class Renderer
                     GameEntity entity = world.getEntityTileMap().getEntityAt(new Vector2(x, y));
                     if (entity != null)
                     {
-                        //FIXME: Don't do * 16 use a viewport instead so it looks nice at different resolutions
                         Rectangle bounds = world.getEntityTileMap().getBoundsOfEntity(entity, new Vector2(x, y));
-                        debugRenderer.rect(bounds.x * 16, bounds.y * 16, bounds.width, bounds.height);
+                        debugRenderer.rect(bounds.x, bounds.y, bounds.width, bounds.height);
                     }
                 }
             }
@@ -108,8 +99,11 @@ public class Renderer
 
         for (MovingEntity entity : world.getMovingEntities())
         {
-            Rectangle bounds = entity.getBounds();
-            debugRenderer.rect(bounds.x, bounds.y, bounds.width, bounds.height);
+            if (positionIsOnScreen(entity.getPos()))
+            {
+                Rectangle bounds = entity.getBounds();
+                debugRenderer.rect(bounds.x, bounds.y, bounds.width, bounds.height);
+            }
         }
 
         debugRenderer.end();
@@ -117,12 +111,11 @@ public class Renderer
 
     public boolean positionIsOnScreen(Vector2 worldPos)
     {
-        //FIXME: Don't use 16
-        Vector2 pixelPos = new Vector2(worldPos.x * 16, worldPos.y * 16);
+        Vector2 pixelPos = new Vector2(worldPos.x, worldPos.y);
         Vector3 screenPos = camera.project(new Vector3(pixelPos.x, pixelPos.y, 0));
-        if (screenPos.x < Gdx.graphics.getWidth() + 32 && screenPos.x > -32)
+        if (screenPos.x < Gdx.graphics.getWidth() + 2 && screenPos.x > -2)
         {
-            if (screenPos.y < Gdx.graphics.getHeight() + 32 && screenPos.y > -32)
+            if (screenPos.y < Gdx.graphics.getHeight() + 2 && screenPos.y > -2)
             {
                 return true;
             }

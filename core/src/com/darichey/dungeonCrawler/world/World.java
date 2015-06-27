@@ -22,7 +22,6 @@ public class World
         player = new EntityPlayer(new Vector2(0, 0));
         movingEntities.add(player);
         generate();
-        //entityTileMap.visualize();
     }
 
     private void generate()

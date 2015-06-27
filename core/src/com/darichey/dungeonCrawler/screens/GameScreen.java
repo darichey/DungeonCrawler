@@ -43,10 +43,4 @@ public class GameScreen extends ScreenAdapter
         update();
         renderer.render();
     }
-
-    @Override
-    public void resize(int width, int height)
-    {
-        renderer.viewport.update(width, height);
-    }
 }
