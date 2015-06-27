@@ -1,7 +1,10 @@
 package com.darichey.dungeonCrawler.handler;
 
+import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 import com.darichey.dungeonCrawler.entity.base.DynamicEntity;
 import com.darichey.dungeonCrawler.entity.base.GameEntity;
+import com.darichey.dungeonCrawler.init.Entities;
 import com.darichey.dungeonCrawler.world.World;
 
 public class CollisionHandler extends HandlerBase
@@ -18,20 +21,15 @@ public class CollisionHandler extends HandlerBase
     {
         for (DynamicEntity entity : world.getDynamicEntities())
         {
-            //for (GameEntity otherEntity : world.get)
-        }
-        /*
-        REDO WITH TILE MAP
-        for (EntityWall wall : world.getWalls())
-        {
-            if (player.getBounds().overlaps(wall.getBounds()))
+            Rectangle entityBounds = new Rectangle(entity.getPos().x, entity.getPos().y, entity.width, entity.height);
+            for (Vector2 wallPos : world.getWallPositions())
             {
-                System.out.println("PREV: " + player.getPrevPos());
-                System.out.println("CUR: " + player.getPos());
-                //player.setPos(player.getPrevPos());
-                //player.setPosY(player.getPos().y + 1);
+                Rectangle otherEntityBounds = new Rectangle(wallPos.x, wallPos.y, Entities.wall.width, Entities.wall.height);
+                if (entityBounds.overlaps(otherEntityBounds))
+                {
+                    System.out.println("overlap");
+                }
             }
         }
-        */
     }
 }

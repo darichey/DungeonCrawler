@@ -34,7 +34,7 @@ public class GameScreen extends ScreenAdapter
     {
         world.update();
         movementHandler.update();
-        //collisionHandler.update();
+        collisionHandler.update();
     }
 
     @Override

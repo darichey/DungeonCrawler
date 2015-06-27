@@ -69,4 +69,9 @@ public class World
     {
         return entityTileMap;
     }
+
+    public ArrayList<Vector2> getWallPositions()
+    {
+        return entityTileMap.getPositionsForEntity(Entities.wall);
+    }
 }

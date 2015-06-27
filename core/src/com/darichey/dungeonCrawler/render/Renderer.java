@@ -58,7 +58,6 @@ public class Renderer
 
         for (DynamicEntity entity : world.getDynamicEntities())
         {
-            System.out.println(entity.getName());
             if (positionIsOnScreen(entity.getPos()))
                 batch.draw(entity.getTexture(), entity.getPos().x, entity.getPos().y, entity.width, entity.height);
         }

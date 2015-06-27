@@ -25,7 +25,7 @@ public class EntityRegistry
         return entities.get(id);
     }
 
-    public static Integer getIDFromEntity(GameEntity entity)
+    public static Integer getIDForEntity(GameEntity entity)
     {
         Set<Map.Entry<Integer, GameEntity>> entries = entities.entrySet();
         for (Map.Entry entry : entries)
