@@ -10,8 +10,8 @@ public class EntityWall extends GameEntity
 {
     public EntityWall()
     {
-        this.width = 16;
-        this.height = 16;
+        this.width = 1;
+        this.height = 1;
         this.texture = new Texture(Gdx.files.internal("wall.png"));
     }
 

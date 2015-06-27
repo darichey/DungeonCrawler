@@ -1,22 +1,15 @@
 package com.darichey.dungeonCrawler.render;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.FPSLogger;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.badlogic.gdx.utils.viewport.Viewport;
 import com.darichey.dungeonCrawler.entity.base.GameEntity;
-import com.darichey.dungeonCrawler.entity.base.MovingEntity;
+import com.darichey.dungeonCrawler.entity.base.DynamicEntity;
 import com.darichey.dungeonCrawler.world.World;
 
 public class Renderer
@@ -63,7 +56,7 @@ public class Renderer
             }
         }
 
-        for (MovingEntity entity : world.getMovingEntities())
+        for (DynamicEntity entity : world.getDynamicEntities())
         {
             System.out.println(entity.getName());
             if (positionIsOnScreen(entity.getPos()))
@@ -90,19 +83,17 @@ public class Renderer
                     GameEntity entity = world.getEntityTileMap().getEntityAt(new Vector2(x, y));
                     if (entity != null)
                     {
-                        Rectangle bounds = world.getEntityTileMap().getBoundsOfEntity(entity, new Vector2(x, y));
-                        debugRenderer.rect(bounds.x, bounds.y, bounds.width, bounds.height);
+                        debugRenderer.rect(x, y, entity.width, entity.height);
                     }
                 }
             }
         }
 
-        for (MovingEntity entity : world.getMovingEntities())
+        for (DynamicEntity entity : world.getDynamicEntities())
         {
             if (positionIsOnScreen(entity.getPos()))
             {
-                Rectangle bounds = entity.getBounds();
-                debugRenderer.rect(bounds.x, bounds.y, bounds.width, bounds.height);
+                debugRenderer.rect(entity.getPos().x, entity.getPos().y, entity.width, entity.height);
             }
         }
 

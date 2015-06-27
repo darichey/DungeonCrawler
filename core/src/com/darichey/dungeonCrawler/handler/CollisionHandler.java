@@ -1,7 +1,7 @@
 package com.darichey.dungeonCrawler.handler;
 
-import com.darichey.dungeonCrawler.entity.EntityPlayer;
-import com.darichey.dungeonCrawler.entity.EntityWall;
+import com.darichey.dungeonCrawler.entity.base.DynamicEntity;
+import com.darichey.dungeonCrawler.entity.base.GameEntity;
 import com.darichey.dungeonCrawler.world.World;
 
 public class CollisionHandler extends HandlerBase
@@ -16,8 +16,10 @@ public class CollisionHandler extends HandlerBase
     @Override
     public void update()
     {
-        EntityPlayer player = world.player;
-
+        for (DynamicEntity entity : world.getDynamicEntities())
+        {
+            //for (GameEntity otherEntity : world.get)
+        }
         /*
         REDO WITH TILE MAP
         for (EntityWall wall : world.getWalls())

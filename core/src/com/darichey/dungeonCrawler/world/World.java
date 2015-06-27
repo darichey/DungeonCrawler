@@ -3,7 +3,7 @@ package com.darichey.dungeonCrawler.world;
 import com.badlogic.gdx.math.Vector2;
 import com.darichey.dungeonCrawler.entity.EntityPlayer;
 import com.darichey.dungeonCrawler.entity.base.GameEntity;
-import com.darichey.dungeonCrawler.entity.base.MovingEntity;
+import com.darichey.dungeonCrawler.entity.base.DynamicEntity;
 import com.darichey.dungeonCrawler.init.Entities;
 
 import java.util.ArrayList;
@@ -15,12 +15,12 @@ public class World
 
     public EntityPlayer player;
     private EntityTileMap entityTileMap = new EntityTileMap();
-    private ArrayList<MovingEntity> movingEntities = new ArrayList<MovingEntity>();
+    private ArrayList<DynamicEntity> dynamicEntities = new ArrayList<DynamicEntity>();
 
     public World()
     {
         player = new EntityPlayer(new Vector2(0, 0));
-        movingEntities.add(player);
+        dynamicEntities.add(player);
         generate();
     }
 
@@ -60,9 +60,9 @@ public class World
         entityTileMap.putEntityAt(entity, pos);
     }
 
-    public ArrayList<MovingEntity> getMovingEntities()
+    public ArrayList<DynamicEntity> getDynamicEntities()
     {
-        return movingEntities;
+        return dynamicEntities;
     }
 
     public EntityTileMap getEntityTileMap()
