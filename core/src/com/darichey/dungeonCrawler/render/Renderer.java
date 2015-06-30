@@ -5,7 +5,6 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.darichey.dungeonCrawler.entity.base.GameEntity;
@@ -43,7 +42,25 @@ public class Renderer
 
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
+        renderWalls();
+        renderDynamics();
+        batch.end();
 
+        if (debugRender) renderDebug();
+    }
+
+    public void renderDebug()
+    {
+        debugRenderer.setProjectionMatrix(camera.combined);
+        debugRenderer.begin(ShapeRenderer.ShapeType.Line);
+        debugRenderer.setColor(1, 1, 0, 1);
+        renderWallDebug();
+        renderDynamicsDebug();
+        debugRenderer.end();
+    }
+
+    private void renderWalls()
+    {
         for (int y = 0; y < World.height; y++)
         {
             for (int x = 0; x < World.width; x++)
@@ -58,24 +75,19 @@ public class Renderer
                 }
             }
         }
+    }
 
+    private void renderDynamics()
+    {
         for (DynamicEntity entity : world.getDynamicEntities())
         {
             if (positionIsOnScreen(entity.getPos()))
                 batch.draw(entity.getTexture(), entity.getPos().x, entity.getPos().y, entity.width, entity.height);
         }
-
-        batch.end();
-
-        if (debugRender) renderDebug();
     }
 
-    public void renderDebug()
+    private void renderWallDebug()
     {
-        debugRenderer.setProjectionMatrix(camera.combined);
-        debugRenderer.begin(ShapeRenderer.ShapeType.Line);
-        debugRenderer.setColor(1, 1, 0, 1);
-
         for (int y = 0; y < World.height; y++)
         {
             for (int x = 0; x < World.width; x++)
@@ -90,7 +102,10 @@ public class Renderer
                 }
             }
         }
+    }
 
+    private void renderDynamicsDebug()
+    {
         for (DynamicEntity entity : world.getDynamicEntities())
         {
             if (positionIsOnScreen(entity.getPos()))
@@ -98,8 +113,6 @@ public class Renderer
                 debugRenderer.rect(entity.getPos().x, entity.getPos().y, entity.width, entity.height);
             }
         }
-
-        debugRenderer.end();
     }
 
     public boolean positionIsOnScreen(Vector2 worldPos)

@@ -16,33 +16,35 @@ public class World
 
     public EntityPlayer player;
     private EntityTileMap entityTileMap = new EntityTileMap();
+    /** List of dynamic entities in the world. Entities should add themselves to this on construction. **/
     private ArrayList<DynamicEntity> dynamicEntities = new ArrayList<DynamicEntity>();
 
     public World()
     {
-        player = new EntityPlayer(new Vector2(0, 0));
-        dynamicEntities.add(player);
+        player = new EntityPlayer(this, new Vector2(0, 0));
         generate();
     }
 
     private void generate()
     {
-        for (int x = 0; x < 50; x++)
+        for (int x = 0; x < 60; x++)
         {
             setEntityAt(Entities.wall, new Vector2(x, 0));
         }
 
-        for (int y = 0; y < 27; y++)
+        for (int x = 0; x < 60; x++)
+        {
+            setEntityAt(Entities.wall, new Vector2(x, 31));
+        }
+
+        for (int y = 0; y < 30; y++)
         {
             setEntityAt(Entities.wall, new Vector2(0, y + 1));
         }
 
-        for (int y = 0; y < 25; y++)
+        for (int y = 0; y < 30; y++)
         {
-            for (int x = 0; x < 25; x++)
-            {
-                setEntityAt(Entities.wall, new Vector2(x + 5, y + 5));
-            }
+            setEntityAt(Entities.wall, new Vector2(59, y + 1));
         }
     }
 
