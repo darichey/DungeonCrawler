@@ -1,6 +1,6 @@
 package com.darichey.dungeonCrawler.event;
 
-public interface Listener<T extends Event>
+public interface Listener
 {
-    void handle(T event) throws Exception;
+
 }

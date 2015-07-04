@@ -1,4 +1,4 @@
-package com.darichey.dungeonCrawler.event.world;
+package com.darichey.dungeonCrawler.event.world.entity;
 
 import com.darichey.dungeonCrawler.entity.base.GameEntity;
 import com.darichey.dungeonCrawler.event.world.WorldEvent;

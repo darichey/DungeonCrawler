@@ -3,6 +3,8 @@ package com.darichey.dungeonCrawler.handler;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.darichey.dungeonCrawler.entity.base.DynamicEntity;
+import com.darichey.dungeonCrawler.event.EventManager;
+import com.darichey.dungeonCrawler.event.world.entity.EntityEvent;
 import com.darichey.dungeonCrawler.init.Entities;
 import com.darichey.dungeonCrawler.world.World;
 
@@ -29,7 +31,7 @@ public class CollisionHandler extends HandlerBase
                 Rectangle otherEntityBounds = new Rectangle(wallPos.x, wallPos.y, Entities.wall.width, Entities.wall.height);
                 if (entityBounds.overlaps(otherEntityBounds))
                 {
-
+                    EventManager.post(new EntityEvent(world, entity));
                 }
             }
         }
