@@ -17,6 +17,7 @@ public class EntityRegistry
 
     /**
      * Registers the passed entity, giving it a unique ID
+     *
      * @param entity The entity to register
      */
     public static void register(GameEntity entity)
@@ -35,6 +36,7 @@ public class EntityRegistry
 
     /**
      * Gets the entity linked to the passed ID
+     *
      * @param id ID of the entity being searched for
      * @return The linked entity
      */
@@ -45,6 +47,7 @@ public class EntityRegistry
 
     /**
      * Gets the ID linked to the passed entity
+     *
      * @param entity Entity to find ID for
      * @return ID of entity
      */
@@ -55,7 +58,7 @@ public class EntityRegistry
         {
             if (entry.getValue().equals(entity))
             {
-                return (Integer)entry.getKey();
+                return (Integer) entry.getKey();
             }
         }
         return null;

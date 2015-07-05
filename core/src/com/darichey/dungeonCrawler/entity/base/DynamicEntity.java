@@ -1,16 +1,20 @@
 package com.darichey.dungeonCrawler.entity.base;
 
 import com.badlogic.gdx.math.Vector2;
-import com.darichey.dungeonCrawler.world.World;
 
 /**
  * The base for dynamic entities. Dynamic entities are entities that can change position
  */
 public abstract class DynamicEntity extends GameEntity
 {
-    /** Current position of the entity **/
+    /**
+     * Current position of the entity *
+     */
     private Vector2 pos = new Vector2();
-    /** Position of the entity one move behind where it is now **/
+
+    /**
+     * Position of the entity one move behind where it is now *
+     */
     private Vector2 prevPos = new Vector2();
 
     public Vector2 getPrevPos()

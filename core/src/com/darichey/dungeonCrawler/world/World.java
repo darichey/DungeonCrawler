@@ -3,8 +3,8 @@ package com.darichey.dungeonCrawler.world;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.darichey.dungeonCrawler.entity.EntityPlayer;
-import com.darichey.dungeonCrawler.entity.base.GameEntity;
 import com.darichey.dungeonCrawler.entity.base.DynamicEntity;
+import com.darichey.dungeonCrawler.entity.base.GameEntity;
 import com.darichey.dungeonCrawler.init.Entities;
 
 import java.util.ArrayList;
@@ -12,16 +12,18 @@ import java.util.ArrayList;
 public class World
 {
     public static final int height = 100;
-    public static final int width  = 100;
+    public static final int width = 100;
 
     public EntityPlayer player;
     private EntityTileMap entityTileMap = new EntityTileMap();
-    /** List of dynamic entities in the world. Entities should add themselves to this on construction. **/
+    /**
+     * List of dynamic entities in the world. Entities should add themselves to this on construction. *
+     */
     private ArrayList<DynamicEntity> dynamicEntities = new ArrayList<DynamicEntity>();
 
     public World()
     {
-        player = new EntityPlayer(this, new Vector2(0, 0));
+        player = new EntityPlayer(this, new Vector2(1, 1));
         generate();
     }
 

@@ -7,8 +7,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
-import com.darichey.dungeonCrawler.entity.base.GameEntity;
 import com.darichey.dungeonCrawler.entity.base.DynamicEntity;
+import com.darichey.dungeonCrawler.entity.base.GameEntity;
 import com.darichey.dungeonCrawler.world.World;
 
 /**
@@ -22,7 +22,7 @@ public class Renderer
     public OrthographicCamera camera;
     private boolean debugRender = true;
 
-    private int VIEWPORT_WIDTH  = 60;
+    private int VIEWPORT_WIDTH = 60;
     private int VIEWPORT_HEIGHT = 32;
 
     public Renderer(World world)
@@ -65,7 +65,7 @@ public class Renderer
         {
             for (int x = 0; x < World.width; x++)
             {
-                if (positionIsOnScreen(new Vector2(x ,y)))
+                if (positionIsOnScreen(new Vector2(x, y)))
                 {
                     GameEntity entity = world.getEntityTileMap().getEntityAt(new Vector2(x, y));
                     if (entity != null)

@@ -1,4 +1,5 @@
 package com.darichey.dungeonCrawler.entity.base;
+
 import com.badlogic.gdx.graphics.Texture;
 import com.darichey.dungeonCrawler.world.World;
 
@@ -7,14 +8,20 @@ import com.darichey.dungeonCrawler.world.World;
  */
 public abstract class GameEntity
 {
-    /** The bounds of the entity **/
+    /**
+     * The bounds of the entity *
+     */
     public int height;
     public int width;
 
-    /** The texture of the entity **/
+    /**
+     * The texture of the entity *
+     */
     public Texture texture;
 
-    /** The world this entity belongs to */
+    /**
+     * The world this entity belongs to
+     */
     public World world;
 
     public Texture getTexture()

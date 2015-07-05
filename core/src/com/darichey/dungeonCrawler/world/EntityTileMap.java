@@ -11,19 +11,28 @@ import java.util.ArrayList;
  */
 public class EntityTileMap
 {
-    /** Underlying 2D array. Each position in the array stores an entity's ID found in {@link EntityRegistry} **/
+    /**
+     * Underlying 2D array. Each position in the array stores an entity's ID found in {@link EntityRegistry} *
+     */
     private int[][] entityMap = new int[World.width][World.height];
 
     public void putEntityAt(GameEntity entity, Vector2 worldPos)
     {
-        int posX = (int)Math.floor(worldPos.x);
-        int posY = (int)Math.floor(worldPos.y);
-        entityMap[posX][posY] = EntityRegistry.getIDForEntity(entity);
+        int posX = (int) Math.floor(worldPos.x);
+        int posY = (int) Math.floor(worldPos.y);
+        if (entity == null)
+        {
+            entityMap[posX][posY] = 0;
+        }
+        else
+        {
+            entityMap[posX][posY] = EntityRegistry.getIDForEntity(entity);
+        }
     }
 
     public GameEntity getEntityAt(Vector2 worldPos)
     {
-        int id = entityMap[(int)Math.floor(worldPos.x)][(int)Math.floor(worldPos.y)];
+        int id = entityMap[(int) Math.floor(worldPos.x)][(int) Math.floor(worldPos.y)];
         return EntityRegistry.getEntityFromID(id);
     }
 

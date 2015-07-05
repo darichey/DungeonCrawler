@@ -2,7 +2,11 @@ package com.darichey.dungeonCrawler.handler;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 import com.darichey.dungeonCrawler.entity.EntityPlayer;
+import com.darichey.dungeonCrawler.entity.EntityWall;
+import com.darichey.dungeonCrawler.entity.base.GameEntity;
 
 /**
  * Handles player movement
@@ -10,6 +14,7 @@ import com.darichey.dungeonCrawler.entity.EntityPlayer;
 public class MovementHandler extends HandlerBase
 {
     private EntityPlayer player;
+    private float movementSpeed = .1f;
 
     public MovementHandler(EntityPlayer player)
     {
@@ -21,22 +26,34 @@ public class MovementHandler extends HandlerBase
     {
         if (isLeftKeyPressed())
         {
-            player.setPosX(player.getPos().x - .1f);
+            if (canMoveTo(new Vector2(player.getPos().x - movementSpeed, player.getPos().y)))
+            {
+                player.setPosX(player.getPos().x - movementSpeed);
+            }
         }
 
         if (isRightKeyPressed())
         {
-            player.setPosX(player.getPos().x + .1f);
+            if (canMoveTo(new Vector2(player.getPos().x + movementSpeed, player.getPos().y)))
+            {
+                player.setPosX(player.getPos().x + movementSpeed);
+            }
         }
 
         if (isDownKeyPressed())
         {
-            player.setPosY(player.getPos().y - .1f);
+            if (canMoveTo(new Vector2(player.getPos().x, player.getPos().y - movementSpeed)))
+            {
+                player.setPosY(player.getPos().y - movementSpeed);
+            }
         }
 
         if (isUpKeyPressed())
         {
-            player.setPosY(player.getPos().y + .1f);
+            if (canMoveTo(new Vector2(player.getPos().x, player.getPos().y + movementSpeed)))
+            {
+                player.setPosY(player.getPos().y + movementSpeed);
+            }
         }
     }
 
@@ -58,5 +75,20 @@ public class MovementHandler extends HandlerBase
     private boolean isUpKeyPressed()
     {
         return Gdx.input.isKeyPressed(Input.Keys.W) || Gdx.input.isKeyPressed(Input.Keys.UP);
+    }
+
+    private boolean canMoveTo(Vector2 pos)
+    {
+        Rectangle playerBounds = new Rectangle(pos.x, pos.y, player.width, player.height);
+        for (Vector2 wallPos : player.world.getWallPositions())
+        {
+            GameEntity wall = player.world.getEntityAt(wallPos);
+            Rectangle wallBounds = new Rectangle(wallPos.x, wallPos.y, wall.width, wall.height);
+            if (playerBounds.overlaps(wallBounds))
+            {
+                return false;
+            }
+        }
+        return true;
     }
 }

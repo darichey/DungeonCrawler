@@ -2,10 +2,11 @@ package com.darichey.dungeonCrawler.entity;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.darichey.dungeonCrawler.entity.base.DynamicEntity;
 import com.darichey.dungeonCrawler.world.World;
+
+import java.util.ArrayList;
 
 /**
  * The player entity of the game
