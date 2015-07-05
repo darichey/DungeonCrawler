@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.darichey.dungeonCrawler.entity.base.GameEntity;
+import com.darichey.dungeonCrawler.init.Entities;
 import com.darichey.dungeonCrawler.world.World;
 
 /**
@@ -30,12 +31,22 @@ public class InputHandler extends InputAdapter
         GameEntity entity = world.getEntityAt(new Vector2(worldPos.x, worldPos.y));
         if (entity == null)
         {
+            world.setEntityAt(Entities.wall, new Vector2(worldPos.x, worldPos.y));
+        }
+        else
+        {
+            world.setEntityAt(null, new Vector2(worldPos.x, worldPos.y));
+        }
+        /*
+        if (entity == null)
+        {
             System.out.println("Null at [" + worldPos.x + ", " + worldPos.y + "]");
         }
         else
         {
             System.out.println(entity.getName() + " at [" + Math.floor(worldPos.x) + ", " + Math.floor(worldPos.y) + "]");
         }
+        */
         return false;
     }
 }
