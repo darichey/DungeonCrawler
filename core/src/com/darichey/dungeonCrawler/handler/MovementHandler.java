@@ -14,7 +14,8 @@ import com.darichey.dungeonCrawler.entity.base.GameEntity;
 public class MovementHandler extends HandlerBase
 {
     private EntityPlayer player;
-    private float movementSpeed = .1f;
+    private float movementSpeed = 1f;
+    private float roundingFactor = movementSpeed * 100;
 
     public MovementHandler(EntityPlayer player)
     {
@@ -28,7 +29,8 @@ public class MovementHandler extends HandlerBase
         {
             if (canMoveTo(new Vector2(player.getPos().x - movementSpeed, player.getPos().y)))
             {
-                player.setPosX(player.getPos().x - movementSpeed);
+                //player.setPosX(player.getPos().x - movementSpeed);
+                player.setPosX(Math.round((player.getPos().x - movementSpeed)*roundingFactor)/roundingFactor);
             }
         }
 
@@ -36,7 +38,8 @@ public class MovementHandler extends HandlerBase
         {
             if (canMoveTo(new Vector2(player.getPos().x + movementSpeed, player.getPos().y)))
             {
-                player.setPosX(player.getPos().x + movementSpeed);
+                //player.setPosX(player.getPos().x + movementSpeed);
+                player.setPosX(Math.round((player.getPos().x + movementSpeed)*roundingFactor)/roundingFactor);
             }
         }
 
@@ -44,7 +47,8 @@ public class MovementHandler extends HandlerBase
         {
             if (canMoveTo(new Vector2(player.getPos().x, player.getPos().y - movementSpeed)))
             {
-                player.setPosY(player.getPos().y - movementSpeed);
+                //player.setPosY(player.getPos().y - movementSpeed);
+                player.setPosY(Math.round((player.getPos().y - movementSpeed) * roundingFactor)/roundingFactor);
             }
         }
 
@@ -52,9 +56,12 @@ public class MovementHandler extends HandlerBase
         {
             if (canMoveTo(new Vector2(player.getPos().x, player.getPos().y + movementSpeed)))
             {
-                player.setPosY(player.getPos().y + movementSpeed);
+                //player.setPosY(player.getPos().y + movementSpeed);
+                player.setPosY(Math.round((player.getPos().y + movementSpeed) * roundingFactor)/roundingFactor);
             }
         }
+
+        System.out.println(player.getPos());
     }
 
     private boolean isLeftKeyPressed()
