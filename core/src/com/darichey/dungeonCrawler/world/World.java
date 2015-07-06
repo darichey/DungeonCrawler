@@ -62,7 +62,7 @@ public class World
         {
             for (DynamicEntity dynamicEntity : getDynamicEntities())
             {
-                Rectangle bounds = new Rectangle(dynamicEntity.getPos().x, dynamicEntity.getPos().y, dynamicEntity.width, dynamicEntity.height);
+                Rectangle bounds = dynamicEntity.getBounds();
                 if (bounds.contains(pos.x, pos.y))
                 {
                     return dynamicEntity;

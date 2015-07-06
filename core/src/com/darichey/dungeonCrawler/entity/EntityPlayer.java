@@ -16,7 +16,6 @@ public class EntityPlayer extends DynamicEntity
     public EntityPlayer(World world, Vector2 pos)
     {
         setPos(pos);
-        setPrevPos(pos);
         this.width = 1;
         this.height = 2;
         this.world = world;

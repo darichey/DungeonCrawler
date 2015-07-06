@@ -14,7 +14,7 @@ import com.darichey.dungeonCrawler.entity.base.GameEntity;
 public class MovementHandler extends HandlerBase
 {
     private EntityPlayer player;
-    private float movementSpeed = 1f;
+    private float movementSpeed = .1f;
     private float roundingFactor = movementSpeed * 100;
 
     public MovementHandler(EntityPlayer player)
@@ -86,7 +86,7 @@ public class MovementHandler extends HandlerBase
 
     private boolean canMoveTo(Vector2 pos)
     {
-        Rectangle playerBounds = new Rectangle(pos.x, pos.y, player.width, player.height);
+        Rectangle playerBounds = player.getBounds();
         for (Vector2 wallPos : player.world.getWallPositions())
         {
             GameEntity wall = player.world.getEntityAt(wallPos);

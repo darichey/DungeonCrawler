@@ -1,5 +1,6 @@
 package com.darichey.dungeonCrawler.entity.base;
 
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 /**
@@ -12,21 +13,6 @@ public abstract class DynamicEntity extends GameEntity
      */
     private Vector2 pos = new Vector2();
 
-    /**
-     * Position of the entity one move behind where it is now *
-     */
-    private Vector2 prevPos = new Vector2();
-
-    public Vector2 getPrevPos()
-    {
-        return prevPos;
-    }
-
-    public void setPrevPos(Vector2 prevPos)
-    {
-        this.prevPos.set(prevPos);
-    }
-
     public Vector2 getPos()
     {
         return pos;
@@ -34,7 +20,6 @@ public abstract class DynamicEntity extends GameEntity
 
     public void setPos(Vector2 pos)
     {
-        setPrevPos(getPos());
         this.pos = pos;
     }
 
@@ -46,5 +31,10 @@ public abstract class DynamicEntity extends GameEntity
     public void setPosY(float posY)
     {
         setPos(new Vector2(getPos().x, posY));
+    }
+
+    public Rectangle getBounds()
+    {
+        return new Rectangle(getPos().x, getPos().y, width, height);
     }
 }

@@ -23,15 +23,8 @@ public class CollisionHandler extends HandlerBase
     {
         for (DynamicEntity entity : world.getDynamicEntities())
         {
-            Rectangle entityBounds = new Rectangle(entity.getPos().x, entity.getPos().y, entity.width, entity.height);
-            for (Vector2 wallPos : world.getWallPositions())
-            {
-                Rectangle otherEntityBounds = new Rectangle(wallPos.x, wallPos.y, Entities.wall.width, Entities.wall.height);
-                if (entityBounds.overlaps(otherEntityBounds))
-                {
+            Rectangle entityBounds = entity.getBounds();
 
-                }
-            }
         }
     }
 }
