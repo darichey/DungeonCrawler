@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * Registry for NON-Dynamic entities
+ * Registry for entities
  */
 public class EntityRegistry
 {
@@ -22,11 +22,6 @@ public class EntityRegistry
      */
     public static void register(GameEntity entity)
     {
-        if (entity instanceof DynamicEntity)
-        {
-            throw new IllegalArgumentException("Dynamic entities are not to be registered in the EntityRegistry.");
-        }
-
         if (entities.containsValue(entity))
         {
             throw new IllegalArgumentException("Attempt to register an already-registered entity.");

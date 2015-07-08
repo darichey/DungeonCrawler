@@ -5,7 +5,6 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.darichey.dungeonCrawler.entity.EntityPlayer;
-import com.darichey.dungeonCrawler.entity.EntityWall;
 import com.darichey.dungeonCrawler.entity.base.GameEntity;
 
 /**
@@ -87,7 +86,7 @@ public class MovementHandler extends HandlerBase
     private boolean canMoveTo(Vector2 pos)
     {
         Rectangle playerBounds = player.getBounds();
-        for (Vector2 wallPos : player.world.getWallPositions())
+        for (Vector2 wallPos : player.world.getBlockPositions())
         {
             GameEntity wall = player.world.getEntityAt(wallPos);
             Rectangle wallBounds = new Rectangle(wallPos.x, wallPos.y, wall.width, wall.height);

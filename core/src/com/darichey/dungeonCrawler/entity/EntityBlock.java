@@ -4,9 +4,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.darichey.dungeonCrawler.entity.base.GameEntity;
 
-public class EntityWall extends GameEntity
+public class EntityBlock extends GameEntity
 {
-    public EntityWall()
+    public EntityBlock()
     {
         this.width = 1;
         this.height = 1;

@@ -31,7 +31,7 @@ public class InputHandler extends InputAdapter
         GameEntity entity = world.getEntityAt(new Vector2(worldPos.x, worldPos.y));
         if (entity == null)
         {
-            world.setEntityAt(Entities.wall, new Vector2(worldPos.x, worldPos.y));
+            world.setEntityAt(Entities.block, new Vector2(worldPos.x, worldPos.y));
         }
         else
         {
