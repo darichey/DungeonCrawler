@@ -13,6 +13,8 @@ public abstract class DynamicEntity extends GameEntity
      */
     private Vector2 pos = new Vector2();
 
+    private Vector2 velocity = new Vector2();
+
     public Vector2 getPos()
     {
         return pos;
@@ -37,4 +39,25 @@ public abstract class DynamicEntity extends GameEntity
     {
         return new Rectangle(getPos().x, getPos().y, width, height);
     }
+
+    public Vector2 getVelocity()
+    {
+        return this.velocity;
+    }
+
+    public void setVelocity(Vector2 velocity)
+    {
+        this.velocity = velocity;
+    }
+
+    public void setVelocityX(float velocityX)
+    {
+        setVelocity(new Vector2(velocityX, getVelocity().y));
+    }
+
+    public void setVelocityY(float velocityY)
+    {
+        setVelocity(new Vector2(getVelocity().x, velocityY));
+    }
+
 }

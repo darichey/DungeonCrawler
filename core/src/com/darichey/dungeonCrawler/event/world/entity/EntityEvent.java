@@ -8,9 +8,9 @@ public class EntityEvent extends WorldEvent
 {
     protected GameEntity entity;
 
-    public EntityEvent(World world, GameEntity entity)
+    public EntityEvent(GameEntity entity)
     {
-        super(world);
+        super(entity.getWorld());
         this.entity = entity;
     }
 

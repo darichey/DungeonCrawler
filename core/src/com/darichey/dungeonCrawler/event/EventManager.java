@@ -34,7 +34,7 @@ public final class EventManager
                 {
                     try
                     {
-                        method.invoke(listener.getClass().newInstance(), event);
+                        method.invoke(listener.getClass(), event);
                     }
                     catch (Exception e)
                     {
