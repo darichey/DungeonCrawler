@@ -15,6 +15,10 @@ public abstract class DynamicEntity extends GameEntity
 
     private Vector2 velocity = new Vector2();
 
+    public float movementSpeed;
+
+    public float dampingSpeed;
+
     public Vector2 getPos()
     {
         return pos;
@@ -60,4 +64,23 @@ public abstract class DynamicEntity extends GameEntity
         setVelocity(new Vector2(getVelocity().x, velocityY));
     }
 
+    public float getMovementSpeed()
+    {
+        return this.movementSpeed;
+    }
+
+    public void setMovementSpeed(float speed)
+    {
+        this.movementSpeed = speed;
+    }
+
+    public float getDampingSpeed()
+    {
+        return this.dampingSpeed;
+    }
+
+    public void setDampingSpeed(float speed)
+    {
+        this.dampingSpeed = speed;
+    }
 }

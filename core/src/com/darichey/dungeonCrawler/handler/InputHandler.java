@@ -1,5 +1,6 @@
 package com.darichey.dungeonCrawler.handler;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -19,9 +20,6 @@ public class InputHandler extends InputAdapter
     private OrthographicCamera camera;
     private EntityPlayer player;
 
-    private float movementSpeed = .1f;
-    private float roundingFactor = movementSpeed * 100;
-
     public InputHandler(World world, OrthographicCamera camera)
     {
         this.world = world;
@@ -37,7 +35,14 @@ public class InputHandler extends InputAdapter
         GameEntity entity = world.getEntityAt(new Vector2(worldPos.x, worldPos.y));
         if (entity == null)
         {
-            world.setEntityAt(Entities.block, new Vector2(worldPos.x, worldPos.y));
+            if (button == 0)
+            {
+                world.setEntityAt(Entities.block, new Vector2(worldPos.x, worldPos.y));
+            }
+            else if (button == 1)
+            {
+                world.setEntityAt(Entities.block2, new Vector2(worldPos.x, worldPos.y));
+            }
         }
         else
         {
@@ -46,63 +51,26 @@ public class InputHandler extends InputAdapter
         return false;
     }
 
-    @Override
-    public boolean keyDown(int keycode)
+    public void update()
     {
-        if (isLeftKey(keycode))
+        if (Gdx.input.isKeyPressed(Input.Keys.D))
         {
-            player.setVelocityX(Math.round((player.getVelocity().x - movementSpeed) * roundingFactor) / roundingFactor);
+            player.setVelocityX(player.getMovementSpeed());
         }
 
-        if (keycode == Input.Keys.D)
+        if (Gdx.input.isKeyPressed(Input.Keys.A))
         {
-            player.setVelocityX(Math.round((player.getVelocity().x + movementSpeed)*roundingFactor)/roundingFactor);
+            player.setVelocityX(-player.getMovementSpeed());
         }
 
-        if (isDownKey(keycode))
+        if (Gdx.input.isKeyPressed(Input.Keys.W))
         {
-            player.setVelocityY(Math.round((player.getVelocity().y - movementSpeed) * roundingFactor) / roundingFactor);
+            player.setVelocityY(player.getMovementSpeed());
         }
 
-        if (isUpKey(keycode))
+        if (Gdx.input.isKeyPressed(Input.Keys.S))
         {
-            player.setVelocityY(Math.round((player.getVelocity().y + movementSpeed) * roundingFactor) / roundingFactor);
+            player.setVelocityY(-player.getMovementSpeed());
         }
-        return false;
-    }
-
-    @Override
-    public boolean keyUp(int keycode)
-    {
-        if (isLeftKey(keycode) || isRightKey(keycode))
-        {
-            player.setVelocityX(0);
-        }
-
-        if (isDownKey(keycode) || isUpKey(keycode))
-        {
-            player.setVelocityY(0);
-        }
-        return false;
-    }
-
-    private boolean isLeftKey(int keycode)
-    {
-        return keycode == Input.Keys.A || keycode == Input.Keys.LEFT;
-    }
-
-    private boolean isRightKey(int keycode)
-    {
-        return keycode == Input.Keys.D || keycode == Input.Keys.RIGHT;
-    }
-
-    private boolean isDownKey(int keycode)
-    {
-        return keycode == Input.Keys.S || keycode == Input.Keys.DOWN;
-    }
-
-    private boolean isUpKey(int keycode)
-    {
-        return keycode == Input.Keys.W || keycode == Input.Keys.UP;
     }
 }

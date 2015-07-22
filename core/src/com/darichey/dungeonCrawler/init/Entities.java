@@ -1,6 +1,7 @@
 package com.darichey.dungeonCrawler.init;
 
 import com.darichey.dungeonCrawler.entity.EntityBlock;
+import com.darichey.dungeonCrawler.entity.EntityBlock2;
 import com.darichey.dungeonCrawler.entity.base.GameEntity;
 import com.darichey.dungeonCrawler.entity.register.EntityRegistry;
 
@@ -11,9 +12,11 @@ import com.darichey.dungeonCrawler.entity.register.EntityRegistry;
 public class Entities
 {
     public static final GameEntity block = new EntityBlock();
+    public static final GameEntity block2 = new EntityBlock2();
 
     public static void init()
     {
         EntityRegistry.register(block);
+        EntityRegistry.register(block2);
     }
 }

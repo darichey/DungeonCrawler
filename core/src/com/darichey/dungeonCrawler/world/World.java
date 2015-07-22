@@ -88,8 +88,11 @@ public class World
         return entityTileMap;
     }
 
+    // TODO: Make this get all types of blocks in a nicer way
     public ArrayList<Vector2> getBlockPositions()
     {
-        return entityTileMap.getPositionsForEntity(Entities.block);
+        ArrayList<Vector2> list = entityTileMap.getPositionsForEntity(Entities.block);
+        list.addAll(entityTileMap.getPositionsForEntity(Entities.block2));
+        return list;
     }
 }

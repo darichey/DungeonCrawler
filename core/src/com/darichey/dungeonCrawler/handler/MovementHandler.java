@@ -18,5 +18,6 @@ public class MovementHandler extends HandlerBase
     public void update()
     {
         player.getPos().add(player.getVelocity());
+        player.getVelocity().scl(player.getDampingSpeed());
     }
 }
