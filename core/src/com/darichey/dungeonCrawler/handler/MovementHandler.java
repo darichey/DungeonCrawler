@@ -1,9 +1,9 @@
 package com.darichey.dungeonCrawler.handler;
 
-import com.darichey.dungeonCrawler.entity.EntityPlayer;
+import com.darichey.dungeonCrawler.entity.living.EntityPlayer;
 
 /**
- * Handles player movement
+ * Applies velocity set by the {@link InputHandler} to the player.
  */
 public class MovementHandler extends HandlerBase
 {
@@ -15,9 +15,9 @@ public class MovementHandler extends HandlerBase
     }
 
     @Override
-    public void update()
+    public void update(float deltaTime)
     {
-        player.getPos().add(player.getVelocity());
+        player.getPos().add(player.getVelocity().scl(deltaTime));
         player.getVelocity().scl(player.getDampingSpeed());
     }
 }

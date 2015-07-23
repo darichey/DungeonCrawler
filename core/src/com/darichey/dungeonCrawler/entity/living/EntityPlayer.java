@@ -1,4 +1,4 @@
-package com.darichey.dungeonCrawler.entity;
+package com.darichey.dungeonCrawler.entity.living;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
@@ -19,8 +19,8 @@ public class EntityPlayer extends LivingEntity
         this.world = world;
         this.texture = new Texture(Gdx.files.internal("player.png"));
         this.health = 100;
-        this.movementSpeed = .1F;
-        this.dampingSpeed = .008F;
+        this.movementSpeed = 10F;
+        this.dampingSpeed = .8F;
         world.getDynamicEntities().add(this);
     }
 

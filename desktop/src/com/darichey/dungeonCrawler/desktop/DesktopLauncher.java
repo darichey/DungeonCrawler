@@ -12,8 +12,6 @@ public class DesktopLauncher
         config.width  = 1920;
         config.height = 1017;
         config.resizable = true;
-        config.foregroundFPS = 0;
-        config.backgroundFPS = -1;
 		new LwjglApplication(new DungeonCrawler(), config);
 	}
 }

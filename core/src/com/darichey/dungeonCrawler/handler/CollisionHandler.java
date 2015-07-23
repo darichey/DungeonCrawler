@@ -2,13 +2,11 @@ package com.darichey.dungeonCrawler.handler;
 
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Box2D;
-import com.darichey.dungeonCrawler.entity.EntityBlock;
+import com.darichey.dungeonCrawler.entity.block.EntityBlock;
 import com.darichey.dungeonCrawler.entity.base.DynamicEntity;
 import com.darichey.dungeonCrawler.event.EventManager;
 import com.darichey.dungeonCrawler.event.world.entity.EventDynamicCollideDynamic;
 import com.darichey.dungeonCrawler.event.world.entity.EventDynamicCollideBlock;
-import com.darichey.dungeonCrawler.handler.HandlerBase;
 import com.darichey.dungeonCrawler.world.World;
 
 /**
@@ -24,7 +22,7 @@ public class CollisionHandler extends HandlerBase
     }
 
     @Override
-    public void update()
+    public void update(float deltaTime)
     {
         for (DynamicEntity firstEntity : world.getDynamicEntities())
         {

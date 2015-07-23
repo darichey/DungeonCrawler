@@ -1,8 +1,7 @@
-package com.darichey.dungeonCrawler.entity;
+package com.darichey.dungeonCrawler.entity.block;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
-import com.darichey.dungeonCrawler.entity.base.GameEntity;
 
 public class EntityBlock2 extends EntityBlock
 {

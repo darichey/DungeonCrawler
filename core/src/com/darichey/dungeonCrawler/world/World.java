@@ -2,8 +2,7 @@ package com.darichey.dungeonCrawler.world;
 
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.darichey.dungeonCrawler.entity.EntityBlock;
-import com.darichey.dungeonCrawler.entity.EntityPlayer;
+import com.darichey.dungeonCrawler.entity.living.EntityPlayer;
 import com.darichey.dungeonCrawler.entity.base.DynamicEntity;
 import com.darichey.dungeonCrawler.entity.base.GameEntity;
 import com.darichey.dungeonCrawler.init.Entities;

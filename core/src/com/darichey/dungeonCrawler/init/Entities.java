@@ -1,7 +1,7 @@
 package com.darichey.dungeonCrawler.init;
 
-import com.darichey.dungeonCrawler.entity.EntityBlock;
-import com.darichey.dungeonCrawler.entity.EntityBlock2;
+import com.darichey.dungeonCrawler.entity.block.EntityBlock;
+import com.darichey.dungeonCrawler.entity.block.EntityBlock2;
 import com.darichey.dungeonCrawler.entity.base.GameEntity;
 import com.darichey.dungeonCrawler.entity.register.EntityRegistry;
 

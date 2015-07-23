@@ -5,5 +5,5 @@ package com.darichey.dungeonCrawler.handler;
  */
 public abstract class HandlerBase
 {
-    public abstract void update();
+    public abstract void update(float deltaTime);
 }
