@@ -69,7 +69,7 @@ public class World
                 }
             }
         }
-        return entityTileMap.getEntityAt(pos);
+        return entity;
     }
 
     public void setEntityAt(GameEntity entity, Vector2 pos)

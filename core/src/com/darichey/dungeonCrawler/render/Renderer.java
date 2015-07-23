@@ -3,7 +3,9 @@ package com.darichey.dungeonCrawler.render;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
@@ -65,10 +67,11 @@ public class Renderer
         {
             for (int x = 0; x < World.width; x++)
             {
-                if (positionIsOnScreen(new Vector2(x, y)))
+                Vector2 pos = new Vector2(x, y);
+                GameEntity entity = world.getEntityTileMap().getEntityAt(pos);
+                if (entity != null)
                 {
-                    GameEntity entity = world.getEntityTileMap().getEntityAt(new Vector2(x, y));
-                    if (entity != null)
+                    if (entityCanBeeSeenAt(entity, pos))
                     {
                         batch.draw(entity.getTexture(), x, y, entity.width, entity.height);
                     }
@@ -81,7 +84,7 @@ public class Renderer
     {
         for (DynamicEntity entity : world.getDynamicEntities())
         {
-            if (positionIsOnScreen(entity.getPos()))
+            if (entityCanBeeSeenAt(entity, entity.getPos()))
                 batch.draw(entity.getTexture(), entity.getPos().x, entity.getPos().y, entity.width, entity.height);
         }
     }
@@ -92,10 +95,11 @@ public class Renderer
         {
             for (int x = 0; x < World.width; x++)
             {
-                if (positionIsOnScreen(new Vector2(x, y)))
+                Vector2 pos = new Vector2(x, y);
+                GameEntity entity = world.getEntityTileMap().getEntityAt(pos);
+                if (entity != null)
                 {
-                    GameEntity entity = world.getEntityTileMap().getEntityAt(new Vector2(x, y));
-                    if (entity != null)
+                    if (entityCanBeeSeenAt(entity, pos))
                     {
                         debugRenderer.rect(x, y, entity.width, entity.height);
                     }
@@ -108,21 +112,28 @@ public class Renderer
     {
         for (DynamicEntity entity : world.getDynamicEntities())
         {
-            if (positionIsOnScreen(entity.getPos()))
+            if (entityCanBeeSeenAt(entity, entity.getPos()))
             {
                 debugRenderer.rect(entity.getPos().x, entity.getPos().y, entity.width, entity.height);
             }
         }
     }
 
-    public boolean positionIsOnScreen(Vector2 worldPos)
+    private boolean entityCanBeeSeenAt(GameEntity entity, Vector2 worldPos)
     {
-        Vector2 pixelPos = new Vector2(worldPos.x, worldPos.y);
-        Vector3 screenPos = camera.project(new Vector3(pixelPos.x, pixelPos.y, 0));
+        Vector3 bottomLeft = camera.project(new Vector3(worldPos.x, worldPos.y, 0));
+        Vector3 topLeft = camera.project(new Vector3(worldPos.x, worldPos.y + entity.height, 0));
+        Vector3 bottomRight = camera.project(new Vector3(worldPos.x + entity.width, worldPos.y, 0));
+        Vector3 topRight = camera.project(new Vector3(worldPos.x + entity.width, worldPos.y + entity.height, 0));
 
-        if (screenPos.x > -32 && screenPos.x < Gdx.graphics.getWidth() + 32)
+        return screenContainsPos(bottomLeft) || screenContainsPos(topLeft) || screenContainsPos(bottomRight) || screenContainsPos(topRight);
+    }
+
+    private boolean screenContainsPos(Vector3 pos)
+    {
+        if (pos.x > 0 && pos.x < Gdx.graphics.getWidth())
         {
-            if (screenPos.y > -32 && screenPos.y < Gdx.graphics.getHeight() + 32)
+            if (pos.y > 0 && pos.y < Gdx.graphics.getHeight())
             {
                 return true;
             }

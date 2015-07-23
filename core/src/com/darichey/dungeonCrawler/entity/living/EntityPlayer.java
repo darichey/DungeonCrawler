@@ -19,8 +19,8 @@ public class EntityPlayer extends LivingEntity
         this.world = world;
         this.texture = new Texture(Gdx.files.internal("player.png"));
         this.health = 100;
-        this.movementSpeed = 10F;
-        this.dampingSpeed = .8F;
+        this.movementSpeed = 6F;
+        this.dampingSpeed = .08F;
         world.getDynamicEntities().add(this);
     }
 
