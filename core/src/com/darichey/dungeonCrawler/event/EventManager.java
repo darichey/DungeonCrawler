@@ -23,7 +23,11 @@ public final class EventManager
         }
     }
 
-    public static void post(Event event)
+    /**
+     * @param event The event to post
+     * @return If the event was canceled
+     */
+    public static boolean post(Event event)
     {
         for (Listener listener : listeners)
         {
@@ -34,7 +38,7 @@ public final class EventManager
                 {
                     try
                     {
-                        method.invoke(listener.getClass(), event);
+                        method.invoke(listener.getClass().newInstance(), event);
                     }
                     catch (Exception e)
                     {
@@ -43,5 +47,6 @@ public final class EventManager
                 }
             }
         }
+        return event.isCancelable() && event.isCanceled();
     }
 }

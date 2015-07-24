@@ -1,2 +1,2 @@
 # DungeonCrawler
-Simple dungeon crawler game
+Simple sandbox dungeon crawler game

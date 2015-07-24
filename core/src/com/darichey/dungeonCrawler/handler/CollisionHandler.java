@@ -34,7 +34,8 @@ public class CollisionHandler extends HandlerBase
                     Rectangle secondBounds = secondEntity.getBounds();
                     if (firstBounds.overlaps(secondBounds))
                     {
-                        EventManager.post(new EventDynamicCollideDynamic(firstEntity, secondEntity));
+                        // FIXME: So broken D:
+                        //EventManager.post(new EventDynamicCollideDynamic(firstEntity, secondEntity));
                     }
                 }
             }
@@ -50,7 +51,8 @@ public class CollisionHandler extends HandlerBase
 
                 if (dynamicBounds.overlaps(blockBounds))
                 {
-                    EventManager.post(new EventDynamicCollideBlock(dynamic, blockPos));
+                    // FIXME: So broken D:
+                    //EventManager.post(new EventDynamicCollideBlock(dynamic, blockPos));
 
                     float overlapX = getOverlap1D(dynamicBounds.x, dynamicBounds.x + dynamicBounds.width, blockBounds.x, blockBounds.x + blockBounds.width);
                     float overlapY = getOverlap1D(dynamicBounds.y, dynamicBounds.y + dynamicBounds.height, blockBounds.y, blockBounds.y + blockBounds.height);

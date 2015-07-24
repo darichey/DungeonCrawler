@@ -2,10 +2,8 @@ package com.darichey.dungeonCrawler.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
-import com.darichey.dungeonCrawler.handler.CollisionHandler;
-import com.darichey.dungeonCrawler.handler.HandlerBase;
-import com.darichey.dungeonCrawler.handler.InputHandler;
-import com.darichey.dungeonCrawler.handler.MovementHandler;
+import com.darichey.dungeonCrawler.event.EventManager;
+import com.darichey.dungeonCrawler.handler.*;
 import com.darichey.dungeonCrawler.init.Entities;
 import com.darichey.dungeonCrawler.render.Renderer;
 import com.darichey.dungeonCrawler.world.World;
@@ -31,6 +29,8 @@ public class GameScreen extends ScreenAdapter
         collisionHandler = new CollisionHandler(world);
         inputHandler = new InputHandler(world, renderer.camera);
         Gdx.input.setInputProcessor(inputHandler);
+
+        EventManager.register(new EventListener());
     }
 
     public void update(float delta)
