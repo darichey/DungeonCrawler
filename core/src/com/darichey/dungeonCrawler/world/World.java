@@ -6,16 +6,19 @@ import com.darichey.dungeonCrawler.entity.living.EntityPlayer;
 import com.darichey.dungeonCrawler.entity.base.DynamicEntity;
 import com.darichey.dungeonCrawler.entity.base.GameEntity;
 import com.darichey.dungeonCrawler.init.Entities;
+import com.darichey.dungeonCrawler.world.chunk.Chunk;
+import com.darichey.dungeonCrawler.world.chunk.EntityTileMap;
 
 import java.util.ArrayList;
 
 public class World
 {
-    public static final int height = 100;
-    public static final int width = 100;
+    public static final int height = 128;
+    public static final int width = 128;
 
     public EntityPlayer player;
-    private EntityTileMap entityTileMap = new EntityTileMap();
+    public ArrayList<Chunk> chunks = new ArrayList<Chunk>();
+
     /**
      * List of dynamic entities in the world. Entities should add themselves to this on construction. *
      */
@@ -23,31 +26,25 @@ public class World
 
     public World()
     {
-        player = new EntityPlayer(this, new Vector2(1, 1));
+        player = new EntityPlayer(this, new Vector2(13, 14));
         generate();
     }
 
     private void generate()
     {
-        for (int x = 0; x < 60; x++)
+        /*
+        for (int y = 0; y < 8; y++)
         {
-            setEntityAt(Entities.block, new Vector2(x, 0));
+            for (int x = 0; x < 8; x++)
+            {
+                Chunk chunk = new Chunk(this, new Vector2(x, y));
+                chunk.generate();
+            }
         }
+        */
 
-        for (int x = 0; x < 60; x++)
-        {
-            setEntityAt(Entities.block, new Vector2(x, 31));
-        }
-
-        for (int y = 0; y < 30; y++)
-        {
-            setEntityAt(Entities.block, new Vector2(0, y + 1));
-        }
-
-        for (int y = 0; y < 30; y++)
-        {
-            setEntityAt(Entities.block, new Vector2(59, y + 1));
-        }
+        Chunk chunk = new Chunk(this, new Vector2(0,0));
+        chunk.generate();
     }
 
     public void update()
@@ -57,7 +54,7 @@ public class World
 
     public GameEntity getEntityAt(Vector2 pos)
     {
-        GameEntity entity = entityTileMap.getEntityAt(pos);
+        GameEntity entity = getChunkFromWorldPos(pos).getEntityAt(pos);
         if (entity == null)
         {
             for (DynamicEntity dynamicEntity : getDynamicEntities())
@@ -74,7 +71,7 @@ public class World
 
     public void setEntityAt(GameEntity entity, Vector2 pos)
     {
-        entityTileMap.putEntityAt(entity, pos);
+        getChunkFromWorldPos(pos).setEntityAt(entity, pos);
     }
 
     public ArrayList<DynamicEntity> getDynamicEntities()
@@ -82,16 +79,32 @@ public class World
         return dynamicEntities;
     }
 
-    public EntityTileMap getEntityTileMap()
-    {
-        return entityTileMap;
-    }
-
     // TODO: Make this get all types of blocks in a nicer way
     public ArrayList<Vector2> getBlockPositions()
     {
-        ArrayList<Vector2> list = entityTileMap.getPositionsForEntity(Entities.block);
-        list.addAll(entityTileMap.getPositionsForEntity(Entities.block2));
+        ArrayList<Vector2> list = new ArrayList<Vector2>();
+        for (Chunk chunk : chunks)
+        {
+            for (Vector2 vector2 : chunk.getBlockPositions())
+            {
+                list.add(vector2);
+            }
+        }
         return list;
+    }
+
+    public Chunk getChunkFromWorldPos(Vector2 worldPos)
+    {
+        // FIXME: When passed 15, this returns 15, however I need it to return 0 for numbers 0-15.
+        // FIXME: (Chunk.length*(Math.floor(Math.abs(worldPos.x/Chunk.length))))
+        Vector2 chunkPos = new Vector2((float) (Chunk.length*(Math.floor(Math.abs(worldPos.x/Chunk.length)))), (float) (Chunk.length*(Math.floor(Math.abs(worldPos.y/Chunk.length)))));
+        for (Chunk chunk : chunks)
+        {
+            if (chunk.getPos().equals(chunkPos))
+            {
+                return chunk;
+            }
+        }
+        return null;
     }
 }

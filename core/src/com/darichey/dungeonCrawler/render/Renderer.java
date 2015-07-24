@@ -68,7 +68,7 @@ public class Renderer
             for (int x = 0; x < World.width; x++)
             {
                 Vector2 pos = new Vector2(x, y);
-                GameEntity entity = world.getEntityTileMap().getEntityAt(pos);
+                GameEntity entity = world.getEntityAt(pos);
                 if (entity != null)
                 {
                     if (entityCanBeeSeenAt(entity, pos))
@@ -96,7 +96,7 @@ public class Renderer
             for (int x = 0; x < World.width; x++)
             {
                 Vector2 pos = new Vector2(x, y);
-                GameEntity entity = world.getEntityTileMap().getEntityAt(pos);
+                GameEntity entity = world.getEntityAt(pos);
                 if (entity != null)
                 {
                     if (entityCanBeeSeenAt(entity, pos))
