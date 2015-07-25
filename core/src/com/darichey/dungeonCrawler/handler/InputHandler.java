@@ -34,24 +34,25 @@ public class InputHandler extends InputAdapter
     public boolean touchDown(int screenX, int screenY, int pointer, int button)
     {
         Vector3 touchPos = new Vector3(screenX, screenY, 0);
-        Vector3 worldPos = camera.unproject(touchPos);
-        GameEntity entity = world.getEntityAt(new Vector2(worldPos.x, worldPos.y));
+        Vector3 unroundedWorldPos = camera.unproject(touchPos);
+        Vector2 worldPos = new Vector2((float) Math.floor(unroundedWorldPos.x), (float) Math.floor(unroundedWorldPos.y));
+        GameEntity entity = world.getEntityAt(worldPos);
         if (entity == null)
         {
             if (button == 0)
             {
                 if (EventManager.post(new BlockPlacedEvent(this.player, (EntityBlock) Entities.block))) return false;
-                world.setEntityAt(Entities.block, new Vector2(worldPos.x, worldPos.y));
+                world.setEntityAt(Entities.block, worldPos);
             }
             else if (button == 1)
             {
                 if (EventManager.post(new BlockPlacedEvent(this.player, (EntityBlock) Entities.block2))) return false;
-                world.setEntityAt(Entities.block2, new Vector2(worldPos.x, worldPos.y));
+                world.setEntityAt(Entities.block2, worldPos);
             }
         }
         else
         {
-            world.setEntityAt(null, new Vector2(worldPos.x, worldPos.y));
+            world.setEntityAt(null, worldPos);
         }
         return true;
     }

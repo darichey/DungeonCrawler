@@ -12,6 +12,9 @@ import com.badlogic.gdx.math.Vector3;
 import com.darichey.dungeonCrawler.entity.base.DynamicEntity;
 import com.darichey.dungeonCrawler.entity.base.GameEntity;
 import com.darichey.dungeonCrawler.world.World;
+import com.darichey.dungeonCrawler.world.chunk.Chunk;
+
+import java.lang.reflect.Array;
 
 /**
  * Renders all game objects within the world
@@ -63,17 +66,20 @@ public class Renderer
 
     private void renderWalls()
     {
-        for (int y = 0; y < World.height; y++)
+        for (Chunk chunk : world.chunks)
         {
-            for (int x = 0; x < World.width; x++)
+            for (int y = 0; y < Chunk.length; y++)
             {
-                Vector2 pos = new Vector2(x, y);
-                GameEntity entity = world.getEntityAt(pos);
-                if (entity != null)
+                for (int x = 0; x < Chunk.length; x++)
                 {
-                    if (entityCanBeeSeenAt(entity, pos))
+                    GameEntity entity = chunk.getEntityAt(new Vector2(x, y));
+                    if (entity != null)
                     {
-                        batch.draw(entity.getTexture(), x, y, entity.width, entity.height);
+                        Vector2 worldPos = chunk.getWorldPosForPos(new Vector2(x, y));
+                        if (entityCanBeeSeenAt(entity, worldPos))
+                        {
+                            batch.draw(entity.getTexture(), worldPos.x, worldPos.y, entity.width, entity.height);
+                        }
                     }
                 }
             }
@@ -91,17 +97,20 @@ public class Renderer
 
     private void renderWallDebug()
     {
-        for (int y = 0; y < World.height; y++)
+        for (Chunk chunk : world.chunks)
         {
-            for (int x = 0; x < World.width; x++)
+            for (int y = 0; y < Chunk.length; y++)
             {
-                Vector2 pos = new Vector2(x, y);
-                GameEntity entity = world.getEntityAt(pos);
-                if (entity != null)
+                for (int x = 0; x < Chunk.length; x++)
                 {
-                    if (entityCanBeeSeenAt(entity, pos))
+                    GameEntity entity = chunk.getEntityAt(new Vector2(x, y));
+                    if (entity != null)
                     {
-                        debugRenderer.rect(x, y, entity.width, entity.height);
+                        Vector2 worldPos = chunk.getWorldPosForPos(new Vector2(x, y));
+                        if (entityCanBeeSeenAt(entity, worldPos))
+                        {
+                            debugRenderer.rect(worldPos.x, worldPos.y, entity.width, entity.height);
+                        }
                     }
                 }
             }

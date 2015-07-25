@@ -15,7 +15,15 @@ public class EntityTileMap
     /**
      * Underlying 2D array. Each position in the array stores an entity's ID found in {@link EntityRegistry} *
      */
-    private int[][] entityMap = new int[Chunk.length][Chunk.length];
+    private int[][] entityMap;
+    private int xSize, ySize;
+
+    public EntityTileMap(int xSize, int ySize)
+    {
+        this.entityMap = new int[xSize][ySize];
+        this.xSize = xSize;
+        this.ySize = ySize;
+    }
 
     public void putEntityAt(GameEntity entity, Vector2 chunkPos)
     {
@@ -23,6 +31,7 @@ public class EntityTileMap
         int posY = (int) Math.floor(chunkPos.y);
         if (entity == null)
         {
+            System.out.println("entity is null");
             entityMap[posX][posY] = 0;
         }
         else
@@ -40,9 +49,9 @@ public class EntityTileMap
     public ArrayList<Vector2> getPositionsForEntity(GameEntity entity)
     {
         ArrayList<Vector2> positions = new ArrayList<Vector2>();
-        for (int y = 0; y < Chunk.length; y++)
+        for (int y = 0; y < ySize; y++)
         {
-            for (int x = 0; x < Chunk.length; x++)
+            for (int x = 0; x < xSize; x++)
             {
                 Vector2 pos = new Vector2(x, y);
                 if (getEntityAt(pos) == entity)
@@ -56,11 +65,11 @@ public class EntityTileMap
 
     public void visualize()
     {
-        for (int y = 0; y < Chunk.length; y++)
+        for (int y = 0; y < ySize; y++)
         {
-            for (int x = 0; x < Chunk.length; x++)
+            for (int x = 0; x < xSize; x++)
             {
-                System.out.print(entityMap[x][y]);
+                System.out.print(entityMap[x][ySize - y - 1]);
             }
             System.out.println("");
         }
