@@ -9,12 +9,18 @@ import com.darichey.dungeonCrawler.world.World;
 
 import java.util.ArrayList;
 
+/**
+ * The world is made up of Chunks. Each chunk uses an {@link com.darichey.dungeonCrawler.world.chunk.EntityTileMap} to store information
+ * about the blocks within the chunk. Chunks are square with their length decided by "length"
+ */
 public class Chunk
 {
+    /** Underlying tile map storing entity information**/
     private EntityTileMap entityTileMap = new EntityTileMap(length, length);
     // Side length of the chunk in blocks.
     public static final int length = 16;
     private Vector2 pos = new Vector2();
+    /** The world this chunk belongs to. **/
     private World world;
 
     public Chunk(World world, Vector2 pos) throws IllegalArgumentException
@@ -24,7 +30,7 @@ public class Chunk
 
         for (Chunk chunk : world.chunks)
         {
-            if (chunk.getPos() == this.getPos())
+            if (chunk.getPos().equals(this.getPos()))
             {
                 throw new IllegalArgumentException("Two chunks in the same world may not share the same position.");
             }
@@ -52,7 +58,7 @@ public class Chunk
     {
         entityTileMap.putEntityAt(entity, pos);
     }
-    
+
     public ArrayList<Vector2> getBlockPositions()
     {
         ArrayList<Vector2> pos = new ArrayList<Vector2>();

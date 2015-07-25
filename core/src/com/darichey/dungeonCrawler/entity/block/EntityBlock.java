@@ -4,6 +4,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.darichey.dungeonCrawler.entity.base.GameEntity;
 
+/**
+ * Basic block entity.
+ */
 public class EntityBlock extends GameEntity
 {
     public EntityBlock()
@@ -16,6 +19,6 @@ public class EntityBlock extends GameEntity
     @Override
     public String getName()
     {
-        return "Wall";
+        return "Block";
     }
 }
