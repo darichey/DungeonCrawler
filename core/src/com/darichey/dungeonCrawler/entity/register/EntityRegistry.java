@@ -3,6 +3,7 @@ package com.darichey.dungeonCrawler.entity.register;
 import com.darichey.dungeonCrawler.entity.base.DynamicEntity;
 import com.darichey.dungeonCrawler.entity.base.GameEntity;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -24,7 +25,7 @@ public class EntityRegistry
     {
         if (entities.containsValue(entity))
         {
-            throw new IllegalArgumentException("Attempt to register an already-registered entity.");
+            throw new IllegalArgumentException("Attempt to register an already-registered entity: " + entity.getName());
         }
         entities.put(++nextID, entity);
     }
@@ -57,5 +58,19 @@ public class EntityRegistry
             }
         }
         return null;
+    }
+
+    /**
+     * @return A list of all registered entities
+     */
+    public static ArrayList<GameEntity> getRegisteredEntities()
+    {
+        ArrayList<GameEntity> returnList = new ArrayList<GameEntity>();
+        Set<Map.Entry<Integer, GameEntity>> entries = entities.entrySet();
+        for (Map.Entry entry : entries)
+        {
+            returnList.add((GameEntity) entry.getValue());
+        }
+        return returnList;
     }
 }

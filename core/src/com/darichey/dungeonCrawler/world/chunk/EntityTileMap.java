@@ -31,7 +31,6 @@ public class EntityTileMap
         int posY = (int) Math.floor(chunkPos.y);
         if (entity == null)
         {
-            System.out.println("entity is null");
             entityMap[posX][posY] = 0;
         }
         else

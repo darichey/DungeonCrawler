@@ -2,6 +2,8 @@ package com.darichey.dungeonCrawler.world.chunk;
 
 import com.badlogic.gdx.math.Vector2;
 import com.darichey.dungeonCrawler.entity.base.GameEntity;
+import com.darichey.dungeonCrawler.entity.block.EntityBlock;
+import com.darichey.dungeonCrawler.entity.register.EntityRegistry;
 import com.darichey.dungeonCrawler.init.Entities;
 import com.darichey.dungeonCrawler.world.World;
 
@@ -50,13 +52,18 @@ public class Chunk
     {
         entityTileMap.putEntityAt(entity, pos);
     }
-
-    // TODO: Make this get all types of blocks in a nicer way
+    
     public ArrayList<Vector2> getBlockPositions()
     {
-        //ArrayList<Vector2> list = entityTileMap.getPositionsForEntity(Entities.block);
-        //list.addAll(entityTileMap.getPositionsForEntity(Entities.block2));
-        return entityTileMap.getPositionsForEntity(Entities.block);
+        ArrayList<Vector2> pos = new ArrayList<Vector2>();
+        for (GameEntity entity : EntityRegistry.getRegisteredEntities())
+        {
+            if (entity instanceof EntityBlock)
+            {
+                pos.addAll(entityTileMap.getPositionsForEntity(entity));
+            }
+        }
+        return pos;
     }
 
     public void generate()
@@ -97,7 +104,6 @@ public class Chunk
      */
     public Vector2 getChunkPosForPos(Vector2 worldPos)
     {
-        //FIXME: Pretty sure this could be simplified a bit
         float x = (float) Math.floor(worldPos.x / length) + (worldPos.x - (getPos().x * length)) - getPos().x;
         float y = (float) Math.floor(worldPos.y / length) + (worldPos.y - (getPos().y * length)) - getPos().y;
         return new Vector2(x, y);

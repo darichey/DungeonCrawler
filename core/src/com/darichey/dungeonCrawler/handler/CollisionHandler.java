@@ -46,11 +46,6 @@ public class CollisionHandler extends HandlerBase
             for (Vector2 blockPos : world.getBlockPositions())
             {
                 EntityBlock block = (EntityBlock) world.getEntityAt(blockPos);
-                if (block == null)
-                {
-                    world.getChunkFromWorldPos(blockPos).visualizeMap();
-                    System.out.println("null");
-                }
                 Rectangle dynamicBounds = dynamic.getBounds();
                 Rectangle blockBounds = new Rectangle(blockPos.x, blockPos.y, block.width, block.height);
 
