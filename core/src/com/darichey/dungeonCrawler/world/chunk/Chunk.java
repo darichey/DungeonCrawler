@@ -3,7 +3,7 @@ package com.darichey.dungeonCrawler.world.chunk;
 import com.badlogic.gdx.math.Vector2;
 import com.darichey.dungeonCrawler.entity.base.GameEntity;
 import com.darichey.dungeonCrawler.entity.block.EntityBlock;
-import com.darichey.dungeonCrawler.entity.register.EntityRegistry;
+import com.darichey.dungeonCrawler.init.register.EntityRegistry;
 import com.darichey.dungeonCrawler.init.Entities;
 import com.darichey.dungeonCrawler.world.World;
 

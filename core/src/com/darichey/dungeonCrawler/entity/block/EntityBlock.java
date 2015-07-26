@@ -14,11 +14,6 @@ public class EntityBlock extends GameEntity
         this.width = 1;
         this.height = 1;
         this.texture = new Texture(Gdx.files.internal("Block.png"));
-    }
-
-    @Override
-    public String getName()
-    {
-        return "Block";
+        this.name = "Block";
     }
 }

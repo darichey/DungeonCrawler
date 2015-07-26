@@ -19,7 +19,7 @@ import java.lang.reflect.Array;
 /**
  * Renders all game objects within the world
  */
-public class Renderer
+public class WorldRenderer
 {
     private SpriteBatch batch;
     private World world;
@@ -30,7 +30,7 @@ public class Renderer
     private int VIEWPORT_WIDTH = 60;
     private int VIEWPORT_HEIGHT = 32;
 
-    public Renderer(World world)
+    public WorldRenderer(World world)
     {
         this.world = world;
         batch = new SpriteBatch();

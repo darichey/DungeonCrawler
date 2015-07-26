@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import com.darichey.dungeonCrawler.entity.base.LivingEntity;
+import com.darichey.dungeonCrawler.inventory.InventoryPlayer;
 import com.darichey.dungeonCrawler.world.World;
 
 /**
@@ -11,6 +12,8 @@ import com.darichey.dungeonCrawler.world.World;
  */
 public class EntityPlayer extends LivingEntity
 {
+    private InventoryPlayer inventory = new InventoryPlayer();
+
     public EntityPlayer(World world, Vector2 pos)
     {
         setPos(pos);
@@ -28,5 +31,10 @@ public class EntityPlayer extends LivingEntity
     public String getName()
     {
         return "Player";
+    }
+
+    public InventoryPlayer getInventory()
+    {
+        return this.inventory;
     }
 }

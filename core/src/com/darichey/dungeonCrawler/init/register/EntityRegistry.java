@@ -1,6 +1,5 @@
-package com.darichey.dungeonCrawler.entity.register;
+package com.darichey.dungeonCrawler.init.register;
 
-import com.darichey.dungeonCrawler.entity.base.DynamicEntity;
 import com.darichey.dungeonCrawler.entity.base.GameEntity;
 
 import java.util.ArrayList;

@@ -20,6 +20,11 @@ public abstract class GameEntity
     public Texture texture;
 
     /**
+     * The name of the entity.
+     */
+    public String name;
+
+    /**
      * The world this entity belongs to
      */
     public World world;
@@ -29,7 +34,10 @@ public abstract class GameEntity
         return this.texture;
     }
 
-    public abstract String getName();
+    public String getName()
+    {
+        return this.name;
+    }
 
     public World getWorld()
     {

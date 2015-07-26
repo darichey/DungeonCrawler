@@ -3,7 +3,7 @@ package com.darichey.dungeonCrawler.init;
 import com.darichey.dungeonCrawler.entity.block.EntityBlock;
 import com.darichey.dungeonCrawler.entity.block.EntityBlock2;
 import com.darichey.dungeonCrawler.entity.base.GameEntity;
-import com.darichey.dungeonCrawler.entity.register.EntityRegistry;
+import com.darichey.dungeonCrawler.init.register.EntityRegistry;
 
 /**
  * Class used to register NON-dynamic entities. Do not register dynamic entities here because
