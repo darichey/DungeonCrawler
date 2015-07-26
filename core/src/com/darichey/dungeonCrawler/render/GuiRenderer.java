@@ -1,19 +1,22 @@
 package com.darichey.dungeonCrawler.render;
 
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.darichey.dungeonCrawler.gui.Gui;
 
 public class GuiRenderer
 {
-    Stage guiStage = new Stage();
 
-    public GuiRenderer(SpriteBatch batch)
-    {
-
-    }
+    /** The gui currently being rendered**/
+    private Gui gui;
 
     public void render()
     {
+        gui.update();
+        gui.getStage().act();
+        gui.getStage().draw();
+    }
 
+    public void showGui(Gui gui)
+    {
+        this.gui = gui;
     }
 }

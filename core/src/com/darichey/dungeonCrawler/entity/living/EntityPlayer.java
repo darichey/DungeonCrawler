@@ -13,6 +13,7 @@ import com.darichey.dungeonCrawler.world.World;
 public class EntityPlayer extends LivingEntity
 {
     private InventoryPlayer inventory = new InventoryPlayer();
+    private int selectedSlot = 0;
 
     public EntityPlayer(World world, Vector2 pos)
     {

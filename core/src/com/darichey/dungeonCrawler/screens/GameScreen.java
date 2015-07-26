@@ -3,9 +3,11 @@ package com.darichey.dungeonCrawler.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.darichey.dungeonCrawler.event.EventManager;
+import com.darichey.dungeonCrawler.gui.GuiHUD;
 import com.darichey.dungeonCrawler.handler.*;
 import com.darichey.dungeonCrawler.init.Entities;
 import com.darichey.dungeonCrawler.init.Items;
+import com.darichey.dungeonCrawler.render.GuiRenderer;
 import com.darichey.dungeonCrawler.render.WorldRenderer;
 import com.darichey.dungeonCrawler.world.World;
 
@@ -16,6 +18,7 @@ public class GameScreen extends ScreenAdapter
 {
     private World world;
     private WorldRenderer worldRenderer;
+    private GuiRenderer guiRenderer;
     private HandlerBase movementHandler;
     private HandlerBase collisionHandler;
     private InputHandler inputHandler;
@@ -27,12 +30,14 @@ public class GameScreen extends ScreenAdapter
 
         world = new World();
         worldRenderer = new WorldRenderer(world);
+        guiRenderer = new GuiRenderer();
         movementHandler = new MovementHandler(world.player);
         collisionHandler = new CollisionHandler(world);
         inputHandler = new InputHandler(world, worldRenderer.camera);
-        Gdx.input.setInputProcessor(inputHandler);
 
+        Gdx.input.setInputProcessor(inputHandler);
         EventManager.register(new EventListener());
+        guiRenderer.showGui(new GuiHUD(world.player.getInventory()));
     }
 
     public void update(float delta)
@@ -48,5 +53,6 @@ public class GameScreen extends ScreenAdapter
     {
         update(delta);
         worldRenderer.render();
+        guiRenderer.render();
     }
 }
