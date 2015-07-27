@@ -24,8 +24,9 @@ public class Gui
         return this.stage;
     }
 
-    public void update()
+    public void render()
     {
-
+        getStage().act();
+        getStage().draw();
     }
 }

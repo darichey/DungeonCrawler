@@ -38,4 +38,14 @@ public class EntityPlayer extends LivingEntity
     {
         return this.inventory;
     }
+
+    public int getSelectedSlot()
+    {
+        return this.selectedSlot;
+    }
+
+    public void setSelectedSlot(int slot)
+    {
+        this.selectedSlot = slot;
+    }
 }

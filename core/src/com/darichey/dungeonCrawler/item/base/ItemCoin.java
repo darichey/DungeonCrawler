@@ -7,7 +7,7 @@ public class ItemCoin extends ItemBase
 {
     public ItemCoin()
     {
-        //this.texture = new Texture(Gdx.files.internal("cookie.png"));
+        this.texture = new Texture(Gdx.files.internal("cookie.png"));
         this.name = "Coin";
     }
 }

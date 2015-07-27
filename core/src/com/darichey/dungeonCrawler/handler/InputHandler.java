@@ -57,6 +57,18 @@ public class InputHandler extends InputAdapter
         return true;
     }
 
+    @Override
+    public boolean scrolled(int amount)
+    {
+        player.setSelectedSlot(player.getSelectedSlot() + amount);
+        if (player.getSelectedSlot() < 0)
+            player.setSelectedSlot(9);
+        if (player.getSelectedSlot() > 9)
+            player.setSelectedSlot(0);
+        System.out.println(player.getSelectedSlot());
+        return true;
+    }
+
     public void update()
     {
         if (Gdx.input.isKeyPressed(Input.Keys.D))

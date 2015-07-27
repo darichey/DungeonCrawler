@@ -10,9 +10,7 @@ public class GuiRenderer
 
     public void render()
     {
-        gui.update();
-        gui.getStage().act();
-        gui.getStage().draw();
+        gui.render();
     }
 
     public void showGui(Gui gui)

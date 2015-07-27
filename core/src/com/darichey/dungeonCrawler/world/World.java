@@ -6,6 +6,8 @@ import com.darichey.dungeonCrawler.entity.living.EntityPlayer;
 import com.darichey.dungeonCrawler.entity.base.DynamicEntity;
 import com.darichey.dungeonCrawler.entity.base.GameEntity;
 import com.darichey.dungeonCrawler.init.Entities;
+import com.darichey.dungeonCrawler.init.Items;
+import com.darichey.dungeonCrawler.item.ItemStack;
 import com.darichey.dungeonCrawler.world.chunk.Chunk;
 import com.darichey.dungeonCrawler.world.chunk.EntityTileMap;
 
@@ -32,6 +34,7 @@ public class World
     public World()
     {
         player = new EntityPlayer(this, new Vector2(13, 14));
+        player.getInventory().setStackInSlot(0, new ItemStack(Items.coin, 10));
         generate();
     }
 

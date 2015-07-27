@@ -5,7 +5,7 @@ import com.darichey.dungeonCrawler.item.base.ItemBase;
 public class ItemStack
 {
     /**
-     * Number of items in the stack
+     * Number of items in the stack. -1 represents an infinite amount
      */
     public int amount;
 
@@ -18,6 +18,18 @@ public class ItemStack
      * Item in the stack
      */
     public ItemBase item;
+
+    public ItemStack(ItemBase item)
+    {
+        this.item = item;
+        this.amount = -1;
+    }
+
+    public ItemStack(ItemBase item, int amount)
+    {
+        this(item);
+        this.amount = amount;
+    }
 
     public int getAmount()
     {

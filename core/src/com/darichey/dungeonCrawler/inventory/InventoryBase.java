@@ -2,21 +2,30 @@ package com.darichey.dungeonCrawler.inventory;
 
 import com.darichey.dungeonCrawler.item.ItemStack;
 
+import java.util.ArrayList;
+
 /**
  * Inventories are simply a collection of {@link com.darichey.dungeonCrawler.inventory.Slot} objects to hold items
  */
 public class InventoryBase
 {
-    Slot[] slots = new Slot[this.size];
-    int size;
+    ArrayList<Slot> slots = new ArrayList<Slot>();
+
+    public InventoryBase(int size)
+    {
+        for (int i = 0; i < size; i++)
+        {
+            this.slots.add(new Slot());
+        }
+    }
 
     public void setStackInSlot(int slotIndex, ItemStack stack)
     {
-        this.slots[slotIndex].setItemStack(stack);
+        this.slots.get(slotIndex).setItemStack(stack);
     }
 
     public ItemStack getStackInSlot(int slotIndex)
     {
-        return this.slots[slotIndex].getItemStack();
+        return this.slots.get(slotIndex).getItemStack();
     }
 }

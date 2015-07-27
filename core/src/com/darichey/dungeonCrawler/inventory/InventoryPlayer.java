@@ -1,17 +1,21 @@
 package com.darichey.dungeonCrawler.inventory;
 
+import java.util.ArrayList;
+
 public class InventoryPlayer extends InventoryBase
 {
     public InventoryPlayer()
     {
-        this.size = 50;
+        super(50);
     }
 
-    public Slot[] getHotBarSlots()
+    public ArrayList<Slot> getHotBarSlots()
     {
-        Slot[] hotbarSlots = new Slot[10];
-        //FIXME: I don't understand how this works
-        System.arraycopy(this.slots, 0, hotbarSlots, 0, 10);
-        return hotbarSlots;
+        ArrayList<Slot> hotBarSlots = new ArrayList<Slot>();
+        for (int i = 0; i < 10; i++)
+        {
+            hotBarSlots.add(this.slots.get(i));
+        }
+        return hotBarSlots;
     }
 }

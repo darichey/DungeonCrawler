@@ -37,7 +37,7 @@ public class GameScreen extends ScreenAdapter
 
         Gdx.input.setInputProcessor(inputHandler);
         EventManager.register(new EventListener());
-        guiRenderer.showGui(new GuiHUD(world.player.getInventory()));
+        guiRenderer.showGui(new GuiHUD(world.player));
     }
 
     public void update(float delta)
