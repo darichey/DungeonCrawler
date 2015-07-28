@@ -1,4 +1,4 @@
-package com.darichey.dungeonCrawler.item;
+package com.darichey.dungeonCrawler.item.stack;
 
 import com.darichey.dungeonCrawler.item.base.ItemBase;
 
@@ -28,12 +28,17 @@ public class ItemStack
     public ItemStack(ItemBase item, int amount)
     {
         this(item);
-        this.amount = amount;
+        setAmount(amount);
     }
 
     public int getAmount()
     {
         return this.amount;
+    }
+
+    public void setAmount(int amount)
+    {
+        this.amount = amount > getMaxAmount() ? getMaxAmount() : amount;
     }
 
     public int getMaxAmount()

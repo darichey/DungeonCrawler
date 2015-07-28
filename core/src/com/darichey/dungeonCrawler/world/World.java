@@ -5,13 +5,10 @@ import com.badlogic.gdx.math.Vector2;
 import com.darichey.dungeonCrawler.entity.living.EntityPlayer;
 import com.darichey.dungeonCrawler.entity.base.DynamicEntity;
 import com.darichey.dungeonCrawler.entity.base.GameEntity;
-import com.darichey.dungeonCrawler.init.Entities;
 import com.darichey.dungeonCrawler.init.Items;
-import com.darichey.dungeonCrawler.item.ItemStack;
+import com.darichey.dungeonCrawler.item.stack.ItemStack;
 import com.darichey.dungeonCrawler.world.chunk.Chunk;
-import com.darichey.dungeonCrawler.world.chunk.EntityTileMap;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class World
@@ -34,7 +31,10 @@ public class World
     public World()
     {
         player = new EntityPlayer(this, new Vector2(13, 14));
-        player.getInventory().setStackInSlot(0, new ItemStack(Items.coin, 10));
+        for (int i = 0; i < 10; i++)
+        {
+            player.getInventory().setStackInSlot(i, new ItemStack(Items.cookie, 1));
+        }
         generate();
     }
 

@@ -1,6 +1,6 @@
 package com.darichey.dungeonCrawler.inventory;
 
-import com.darichey.dungeonCrawler.item.ItemStack;
+import com.darichey.dungeonCrawler.item.stack.ItemStack;
 
 import java.util.ArrayList;
 

@@ -2,14 +2,14 @@ package com.darichey.dungeonCrawler.init;
 
 import com.darichey.dungeonCrawler.init.register.ItemRegistry;
 import com.darichey.dungeonCrawler.item.base.ItemBase;
-import com.darichey.dungeonCrawler.item.base.ItemCoin;
+import com.darichey.dungeonCrawler.item.ItemCookie;
 
 public class Items
 {
-    public static final ItemBase coin = new ItemCoin();
+    public static final ItemBase cookie = new ItemCookie();
 
     public static void init()
     {
-        ItemRegistry.register(coin);
+        ItemRegistry.register(cookie);
     }
 }

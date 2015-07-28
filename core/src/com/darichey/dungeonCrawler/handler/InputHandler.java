@@ -65,8 +65,18 @@ public class InputHandler extends InputAdapter
             player.setSelectedSlot(9);
         if (player.getSelectedSlot() > 9)
             player.setSelectedSlot(0);
-        System.out.println(player.getSelectedSlot());
         return true;
+    }
+
+    @Override
+    public boolean keyDown(int keycode)
+    {
+        if (keycode >= Input.Keys.NUM_0 && keycode <= Input.Keys.NUM_9)
+        {
+            player.setSelectedSlot(keycode == Input.Keys.NUM_0 ? 9 : keycode - 8);
+            return true;
+        }
+        return false;
     }
 
     public void update()
