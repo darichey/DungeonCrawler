@@ -1,6 +1,6 @@
 package com.darichey.dungeonCrawler.event.world.block;
 
-import com.darichey.dungeonCrawler.entity.block.EntityBlock;
+import com.darichey.dungeonCrawler.entity.block.EntityBlockBase;
 import com.darichey.dungeonCrawler.event.world.WorldEvent;
 
 /**
@@ -8,15 +8,15 @@ import com.darichey.dungeonCrawler.event.world.WorldEvent;
  */
 public abstract class BlockEvent extends WorldEvent
 {
-    private EntityBlock block;
+    private EntityBlockBase block;
 
-    public BlockEvent(EntityBlock block)
+    public BlockEvent(EntityBlockBase block)
     {
         super(block.world);
         this.block = block;
     }
 
-    public EntityBlock getBlock()
+    public EntityBlockBase getBlock()
     {
         return this.block;
     }

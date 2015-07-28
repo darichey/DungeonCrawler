@@ -28,4 +28,16 @@ public class InventoryBase
     {
         return this.slots.get(slotIndex).getItemStack();
     }
+
+    public Slot getNextValidSlotFor(ItemStack stack)
+    {
+        for (Slot slot : slots)
+        {
+            if (slot.getItemSpace() > 0)
+            {
+                return slot;
+            }
+        }
+        return null;
+    }
 }

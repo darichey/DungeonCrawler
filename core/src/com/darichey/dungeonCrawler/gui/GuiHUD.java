@@ -74,15 +74,22 @@ public class GuiHUD extends GuiInventory
         {
             int slotIndex = hotbarSlots.indexOf(slot);
             ItemStack stack = slot.getItemStack();
+            Image stackImage = itemImages.get(slotIndex);
+            Label stackAmount = itemAmounts.get(slotIndex);
+
             if (stack != null)
             {
-                Image stackImage = itemImages.get(slotIndex);
+
                 stackImage.setDrawable(new TextureRegionDrawable(new TextureRegion(stack.getItem().getTexture())));
                 stackImage.setSize(stack.getItem().getTexture().getWidth(), stack.getItem().getTexture().getWidth());
 
-                Label stackAmount = itemAmounts.get(slotIndex);
                 stackAmount.setText(String.valueOf(stack.getAmount()));
-                stackAmount.setX(48 + (slotIndex * 36) + ((-stackAmount.getText().length + 2)* 10));
+                stackAmount.setX(43 + (slotIndex * 36) + ((-stackAmount.getText().length + 2) * 10));
+            }
+            else
+            {
+                stackImage.setDrawable(null);
+                stackAmount.setText("");
             }
         }
     }

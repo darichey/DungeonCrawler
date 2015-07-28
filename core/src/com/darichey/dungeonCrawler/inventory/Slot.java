@@ -21,4 +21,21 @@ public class Slot
     {
         return this.itemStack;
     }
+
+    public void addStack(ItemStack stack)
+    {
+        if (this.itemStack == null)
+        {
+            this.itemStack = stack;
+        }
+        else
+        {
+            this.itemStack.add(stack);
+        }
+    }
+
+    public int getItemSpace()
+    {
+        return itemStack == null ? ItemStack.maxAmount : ItemStack.maxAmount - itemStack.getAmount();
+    }
 }

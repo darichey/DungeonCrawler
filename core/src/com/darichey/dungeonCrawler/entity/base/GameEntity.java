@@ -1,6 +1,7 @@
 package com.darichey.dungeonCrawler.entity.base;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.darichey.dungeonCrawler.item.placeable.ItemPlaceableBase;
 import com.darichey.dungeonCrawler.world.World;
 
 /**
@@ -29,6 +30,11 @@ public abstract class GameEntity
      */
     public World world;
 
+    /**
+     * The {@link com.darichey.dungeonCrawler.item.placeable.ItemPlaceableBase} associated with this entity.
+     */
+    public ItemPlaceableBase placeable;
+
     public Texture getTexture()
     {
         return this.texture;
@@ -42,5 +48,15 @@ public abstract class GameEntity
     public World getWorld()
     {
         return this.world;
+    }
+
+    public ItemPlaceableBase getPlaceable()
+    {
+        return this.placeable;
+    }
+
+    public void setPlaceable(ItemPlaceableBase placeable)
+    {
+        this.placeable = placeable;
     }
 }

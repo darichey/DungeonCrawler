@@ -6,12 +6,16 @@ import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
-import com.darichey.dungeonCrawler.entity.block.EntityBlock;
+import com.darichey.dungeonCrawler.entity.block.EntityBlockBase;
 import com.darichey.dungeonCrawler.entity.living.EntityPlayer;
 import com.darichey.dungeonCrawler.entity.base.GameEntity;
 import com.darichey.dungeonCrawler.event.EventManager;
 import com.darichey.dungeonCrawler.event.world.block.BlockPlacedEvent;
 import com.darichey.dungeonCrawler.init.Entities;
+import com.darichey.dungeonCrawler.inventory.Slot;
+import com.darichey.dungeonCrawler.item.base.ItemBase;
+import com.darichey.dungeonCrawler.item.placeable.ItemPlaceableBase;
+import com.darichey.dungeonCrawler.item.stack.ItemStack;
 import com.darichey.dungeonCrawler.world.World;
 
 /**
@@ -37,22 +41,40 @@ public class InputHandler extends InputAdapter
         Vector3 unroundedWorldPos = camera.unproject(touchPos);
         Vector2 worldPos = new Vector2((float) Math.floor(unroundedWorldPos.x), (float) Math.floor(unroundedWorldPos.y));
         GameEntity entity = world.getEntityAt(worldPos);
-        if (entity == null)
+        if (button == 0)
         {
-            if (button == 0)
+            // Break block
+            if (entity != null && entity instanceof EntityBlockBase)
             {
-                if (EventManager.post(new BlockPlacedEvent(this.player, (EntityBlock) Entities.block))) return false;
-                world.setEntityAt(Entities.block, worldPos);
-            }
-            else if (button == 1)
-            {
-                if (EventManager.post(new BlockPlacedEvent(this.player, (EntityBlock) Entities.block2))) return false;
-                world.setEntityAt(Entities.block2, worldPos);
+                ItemStack stack = new ItemStack(entity.getPlaceable(), 1);
+                Slot slot = player.getInventory().getNextValidSlotFor(stack);
+                slot.addStack(stack);
+                world.setEntityAt(null, worldPos);
             }
         }
-        else
+        else if (button == 1)
         {
-            world.setEntityAt(null, worldPos);
+            // Place entity
+            if (entity == null)
+            {
+                ItemStack stackInHand = player.getSelectedStack();
+                if (stackInHand != null)
+                {
+                    if (stackInHand.getItem() instanceof ItemPlaceableBase)
+                    {
+                        GameEntity placeEntity = ((ItemPlaceableBase) stackInHand.getItem()).getEntity();
+                        if (stackInHand.amount != -1)
+                        {
+                            stackInHand.amount--;
+                            if (stackInHand.amount == 0)
+                            {
+                                player.getInventory().setStackInSlot(player.getSelectedSlot(), null);
+                            }
+                        }
+                        world.setEntityAt(placeEntity, worldPos);
+                    }
+                }
+            }
         }
         return true;
     }

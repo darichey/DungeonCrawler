@@ -12,7 +12,7 @@ public class ItemStack
     /**
      * Max number of items allowed in the stack
      */
-    public int maxAmount = 128;
+    public static int maxAmount = 128;
 
     /**
      * Item in the stack
@@ -38,12 +38,15 @@ public class ItemStack
 
     public void setAmount(int amount)
     {
-        this.amount = amount > getMaxAmount() ? getMaxAmount() : amount;
+        this.amount = amount > maxAmount ? maxAmount : amount;
     }
 
-    public int getMaxAmount()
+    public void add(ItemStack stack)
     {
-        return this.maxAmount;
+        if (stack.getItem() == this.getItem())
+        {
+            this.setAmount(this.getAmount() + stack.getAmount());
+        }
     }
 
     public ItemBase getItem()

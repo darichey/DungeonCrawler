@@ -31,10 +31,6 @@ public class World
     public World()
     {
         player = new EntityPlayer(this, new Vector2(13, 14));
-        for (int i = 0; i < 10; i++)
-        {
-            player.getInventory().setStackInSlot(i, new ItemStack(Items.cookie, 1));
-        }
         generate();
     }
 

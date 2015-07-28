@@ -2,7 +2,7 @@ package com.darichey.dungeonCrawler.world.chunk;
 
 import com.badlogic.gdx.math.Vector2;
 import com.darichey.dungeonCrawler.entity.base.GameEntity;
-import com.darichey.dungeonCrawler.entity.block.EntityBlock;
+import com.darichey.dungeonCrawler.entity.block.EntityBlockBase;
 import com.darichey.dungeonCrawler.init.register.EntityRegistry;
 import com.darichey.dungeonCrawler.init.Entities;
 import com.darichey.dungeonCrawler.world.World;
@@ -64,7 +64,7 @@ public class Chunk
         ArrayList<Vector2> pos = new ArrayList<Vector2>();
         for (GameEntity entity : EntityRegistry.getRegisteredEntities())
         {
-            if (entity instanceof EntityBlock)
+            if (entity instanceof EntityBlockBase)
             {
                 pos.addAll(entityTileMap.getPositionsForEntity(entity));
             }
@@ -76,22 +76,22 @@ public class Chunk
     {
         for (int x = 0; x < length; x++)
         {
-            setEntityAt(Entities.block, new Vector2(x, 0));
+            setEntityAt(Entities.stone, new Vector2(x, 0));
         }
 
         for (int x = 0; x < length; x++)
         {
-            setEntityAt(Entities.block, new Vector2(x, length - 1));
+            setEntityAt(Entities.stone, new Vector2(x, length - 1));
         }
 
         for (int y = 1; y < length - 1; y++)
         {
-            setEntityAt(Entities.block, new Vector2(0, y));
+            setEntityAt(Entities.stone, new Vector2(0, y));
         }
 
         for (int y = 1; y < length - 1; y++)
         {
-            setEntityAt(Entities.block, new Vector2(length - 1, y));
+            setEntityAt(Entities.stone, new Vector2(length - 1, y));
         }
     }
 
