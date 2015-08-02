@@ -17,4 +17,9 @@ public class GuiRenderer
     {
         this.gui = gui;
     }
+
+    public Gui getCurrentGui()
+    {
+        return this.gui;
+    }
 }

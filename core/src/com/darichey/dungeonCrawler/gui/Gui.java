@@ -2,7 +2,7 @@ package com.darichey.dungeonCrawler.gui;
 
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
-public class Gui
+public abstract class Gui
 {
     private String name;
     private Stage stage;
@@ -11,7 +11,6 @@ public class Gui
     {
         this.name = name;
         this.stage = stage;
-        //this.stage.setViewport(new StretchViewport(60, 32));
     }
 
     public String getName()

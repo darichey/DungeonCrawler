@@ -11,11 +11,14 @@ import com.darichey.dungeonCrawler.entity.living.EntityPlayer;
 import com.darichey.dungeonCrawler.entity.base.GameEntity;
 import com.darichey.dungeonCrawler.event.EventManager;
 import com.darichey.dungeonCrawler.event.world.block.BlockPlacedEvent;
+import com.darichey.dungeonCrawler.gui.GuiHUD;
+import com.darichey.dungeonCrawler.gui.GuiPlayerInventory;
 import com.darichey.dungeonCrawler.init.Entities;
 import com.darichey.dungeonCrawler.inventory.Slot;
 import com.darichey.dungeonCrawler.item.base.ItemBase;
 import com.darichey.dungeonCrawler.item.placeable.ItemPlaceableBase;
 import com.darichey.dungeonCrawler.item.stack.ItemStack;
+import com.darichey.dungeonCrawler.screens.GameScreen;
 import com.darichey.dungeonCrawler.world.World;
 
 /**
@@ -38,6 +41,7 @@ public class InputHandler extends InputAdapter
     public boolean touchDown(int screenX, int screenY, int pointer, int button)
     {
         Vector3 touchPos = new Vector3(screenX, screenY, 0);
+        System.out.println(touchPos);
         Vector3 unroundedWorldPos = camera.unproject(touchPos);
         Vector2 worldPos = new Vector2((float) Math.floor(unroundedWorldPos.x), (float) Math.floor(unroundedWorldPos.y));
         GameEntity entity = world.getEntityAt(worldPos);
@@ -68,7 +72,8 @@ public class InputHandler extends InputAdapter
                             stackInHand.amount--;
                             if (stackInHand.amount == 0)
                             {
-                                player.getInventory().setStackInSlot(player.getSelectedSlot(), null);
+                                System.out.println("set null");
+                                player.getInventory().setStackInSlot(player.getSelectedSlotIndex(), null);
                             }
                         }
                         world.setEntityAt(placeEntity, worldPos);
@@ -82,10 +87,10 @@ public class InputHandler extends InputAdapter
     @Override
     public boolean scrolled(int amount)
     {
-        player.setSelectedSlot(player.getSelectedSlot() + amount);
-        if (player.getSelectedSlot() < 0)
+        player.setSelectedSlot(player.getSelectedSlotIndex() + amount);
+        if (player.getSelectedSlotIndex() < 0)
             player.setSelectedSlot(9);
-        if (player.getSelectedSlot() > 9)
+        if (player.getSelectedSlotIndex() > 9)
             player.setSelectedSlot(0);
         return true;
     }
@@ -97,6 +102,11 @@ public class InputHandler extends InputAdapter
         {
             player.setSelectedSlot(keycode == Input.Keys.NUM_0 ? 9 : keycode - 8);
             return true;
+        }
+
+        if (keycode == Input.Keys.E)
+        {
+            GameScreen.guiRenderer.showGui(player.hasInventoryOpen() ? new GuiHUD(player) : new GuiPlayerInventory(player.getInventory()));
         }
         return false;
     }

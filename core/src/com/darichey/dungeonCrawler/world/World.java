@@ -31,6 +31,7 @@ public class World
     public World()
     {
         player = new EntityPlayer(this, new Vector2(13, 14));
+        player.getInventory().setStackInSlot(0, new ItemStack(Items.stone, 2));
         generate();
     }
 

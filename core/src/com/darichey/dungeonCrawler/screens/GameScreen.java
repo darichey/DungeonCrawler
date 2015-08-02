@@ -2,6 +2,9 @@ package com.darichey.dungeonCrawler.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.darichey.dungeonCrawler.event.EventManager;
 import com.darichey.dungeonCrawler.gui.GuiHUD;
 import com.darichey.dungeonCrawler.handler.*;
@@ -18,10 +21,12 @@ public class GameScreen extends ScreenAdapter
 {
     private World world;
     private WorldRenderer worldRenderer;
-    private GuiRenderer guiRenderer;
+    public static GuiRenderer guiRenderer;
     private HandlerBase movementHandler;
     private HandlerBase collisionHandler;
     private InputHandler inputHandler;
+
+    public static Label.LabelStyle labelStyle = new Label.LabelStyle(new BitmapFont(), Color.WHITE);
 
     public GameScreen()
     {

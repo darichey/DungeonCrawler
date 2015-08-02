@@ -7,17 +7,9 @@ import java.util.ArrayList;
 /**
  * Inventories are simply a collection of {@link com.darichey.dungeonCrawler.inventory.Slot} objects to hold items
  */
-public class InventoryBase
+public abstract class InventoryBase
 {
-    ArrayList<Slot> slots = new ArrayList<Slot>();
-
-    public InventoryBase(int size)
-    {
-        for (int i = 0; i < size; i++)
-        {
-            this.slots.add(new Slot());
-        }
-    }
+    private ArrayList<Slot> slots = new ArrayList<Slot>();
 
     public void setStackInSlot(int slotIndex, ItemStack stack)
     {
@@ -39,5 +31,23 @@ public class InventoryBase
             }
         }
         return null;
+    }
+
+    public Slot getSlot(int slotIndex)
+    {
+        return this.slots.get(slotIndex);
+    }
+
+    public ArrayList<Slot> getSlots()
+    {
+        return this.slots;
+    }
+
+    public void updateSlots()
+    {
+        for (Slot slot : getSlots())
+        {
+            slot.update();
+        }
     }
 }

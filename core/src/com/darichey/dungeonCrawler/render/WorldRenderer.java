@@ -25,7 +25,7 @@ public class WorldRenderer
     private World world;
     private ShapeRenderer debugRenderer = new ShapeRenderer();
     public OrthographicCamera camera;
-    public static boolean debugRender = true;
+    public static boolean debugRender = false;
 
     private int VIEWPORT_WIDTH = 60;
     private int VIEWPORT_HEIGHT = 32;
