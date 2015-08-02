@@ -1,6 +1,6 @@
 package com.darichey.dungeonCrawler.init.register;
 
-import com.darichey.dungeonCrawler.item.base.ItemBase;
+import com.darichey.dungeonCrawler.item.ItemBase;
 
 import java.util.ArrayList;
 import java.util.HashMap;

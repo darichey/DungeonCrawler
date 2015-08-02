@@ -1,6 +1,6 @@
 package com.darichey.dungeonCrawler.item.stack;
 
-import com.darichey.dungeonCrawler.item.base.ItemBase;
+import com.darichey.dungeonCrawler.item.ItemBase;
 
 public class ItemStack
 {

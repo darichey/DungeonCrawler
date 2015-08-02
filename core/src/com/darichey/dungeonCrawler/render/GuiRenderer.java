@@ -5,7 +5,9 @@ import com.darichey.dungeonCrawler.gui.Gui;
 public class GuiRenderer
 {
 
-    /** The gui currently being rendered**/
+    /**
+     * The gui currently being rendered*
+     */
     private Gui gui;
 
     public void render()

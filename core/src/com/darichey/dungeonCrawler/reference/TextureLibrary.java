@@ -1,4 +1,4 @@
-package com.darichey.dungeonCrawler.render;
+package com.darichey.dungeonCrawler.reference;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;

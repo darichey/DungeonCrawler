@@ -9,7 +9,7 @@ public class BlockPlacedEvent extends BlockEvent
 
     /**
      * @param entity The source of the placed block. Normally an {@link com.darichey.dungeonCrawler.entity.living.EntityPlayer}
-     * @param block The block placed.
+     * @param block  The block placed.
      */
     public BlockPlacedEvent(GameEntity entity, EntityBlockBase block)
     {

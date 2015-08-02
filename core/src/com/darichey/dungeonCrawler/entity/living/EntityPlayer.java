@@ -1,13 +1,12 @@
 package com.darichey.dungeonCrawler.entity.living;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import com.darichey.dungeonCrawler.entity.base.LivingEntity;
 import com.darichey.dungeonCrawler.gui.GuiPlayerInventory;
 import com.darichey.dungeonCrawler.inventory.InventoryPlayer;
 import com.darichey.dungeonCrawler.item.stack.ItemStack;
-import com.darichey.dungeonCrawler.render.TextureLibrary;
+import com.darichey.dungeonCrawler.reference.Names;
+import com.darichey.dungeonCrawler.reference.TextureLibrary;
 import com.darichey.dungeonCrawler.screens.GameScreen;
 import com.darichey.dungeonCrawler.world.World;
 
@@ -29,13 +28,8 @@ public class EntityPlayer extends LivingEntity
         this.health = 100;
         this.movementSpeed = 6F;
         this.dampingSpeed = .08F;
+        this.name = Names.player;
         world.getDynamicEntities().add(this);
-    }
-
-    @Override
-    public String getName()
-    {
-        return "Player";
     }
 
     public InventoryPlayer getInventory()

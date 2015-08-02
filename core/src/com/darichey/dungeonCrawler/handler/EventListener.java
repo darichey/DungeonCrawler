@@ -3,7 +3,6 @@ package com.darichey.dungeonCrawler.handler;
 import com.darichey.dungeonCrawler.event.Listener;
 import com.darichey.dungeonCrawler.event.Subscribe;
 import com.darichey.dungeonCrawler.event.world.block.BlockPlacedEvent;
-import com.darichey.dungeonCrawler.init.Entities;
 
 public class EventListener implements Listener
 {

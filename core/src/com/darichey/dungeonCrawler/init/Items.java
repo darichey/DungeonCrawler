@@ -1,7 +1,7 @@
 package com.darichey.dungeonCrawler.init;
 
 import com.darichey.dungeonCrawler.init.register.ItemRegistry;
-import com.darichey.dungeonCrawler.item.base.ItemBase;
+import com.darichey.dungeonCrawler.item.ItemBase;
 import com.darichey.dungeonCrawler.item.ItemCookie;
 import com.darichey.dungeonCrawler.item.placeable.ItemPlaceableBase;
 import com.darichey.dungeonCrawler.item.placeable.ItemPlaceableStone;

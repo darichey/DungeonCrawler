@@ -1,7 +1,7 @@
 package com.darichey.dungeonCrawler.item.placeable;
 
 import com.darichey.dungeonCrawler.entity.base.GameEntity;
-import com.darichey.dungeonCrawler.item.base.ItemBase;
+import com.darichey.dungeonCrawler.item.ItemBase;
 
 public abstract class ItemPlaceableBase extends ItemBase
 {

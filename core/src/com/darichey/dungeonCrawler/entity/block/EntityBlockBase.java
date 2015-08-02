@@ -1,4 +1,5 @@
 package com.darichey.dungeonCrawler.entity.block;
+
 import com.darichey.dungeonCrawler.entity.base.GameEntity;
 
 /**
@@ -10,6 +11,5 @@ public abstract class EntityBlockBase extends GameEntity
     {
         this.width = 1;
         this.height = 1;
-        this.name = "Block";
     }
 }

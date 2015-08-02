@@ -3,8 +3,8 @@ package com.darichey.dungeonCrawler.world.chunk;
 import com.badlogic.gdx.math.Vector2;
 import com.darichey.dungeonCrawler.entity.base.GameEntity;
 import com.darichey.dungeonCrawler.entity.block.EntityBlockBase;
-import com.darichey.dungeonCrawler.init.register.EntityRegistry;
 import com.darichey.dungeonCrawler.init.Entities;
+import com.darichey.dungeonCrawler.init.register.EntityRegistry;
 import com.darichey.dungeonCrawler.world.World;
 
 import java.util.ArrayList;
@@ -15,12 +15,16 @@ import java.util.ArrayList;
  */
 public class Chunk
 {
-    /** Underlying tile map storing entity information**/
+    /**
+     * Underlying tile map storing entity information*
+     */
     private EntityTileMap entityTileMap = new EntityTileMap(length, length);
     // Side length of the chunk in blocks.
     public static final int length = 16;
     private Vector2 pos = new Vector2();
-    /** The world this chunk belongs to. **/
+    /**
+     * The world this chunk belongs to. *
+     */
     private World world;
 
     public Chunk(World world, Vector2 pos) throws IllegalArgumentException

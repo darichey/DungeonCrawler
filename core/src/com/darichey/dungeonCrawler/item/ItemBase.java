@@ -1,6 +1,7 @@
-package com.darichey.dungeonCrawler.item.base;
+package com.darichey.dungeonCrawler.item;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.darichey.dungeonCrawler.item.placeable.ItemPlaceableBase;
 
 public abstract class ItemBase
 {
@@ -14,7 +15,7 @@ public abstract class ItemBase
      */
     public String name;
 
-    public  Texture getTexture()
+    public Texture getTexture()
     {
         return this.texture;
     }
@@ -22,5 +23,10 @@ public abstract class ItemBase
     public String getName()
     {
         return this.name;
+    }
+
+    public boolean isPlaceable()
+    {
+        return this instanceof ItemPlaceableBase;
     }
 }

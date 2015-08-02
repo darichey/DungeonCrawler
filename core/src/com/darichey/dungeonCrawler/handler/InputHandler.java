@@ -6,16 +6,12 @@ import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
+import com.darichey.dungeonCrawler.entity.base.GameEntity;
 import com.darichey.dungeonCrawler.entity.block.EntityBlockBase;
 import com.darichey.dungeonCrawler.entity.living.EntityPlayer;
-import com.darichey.dungeonCrawler.entity.base.GameEntity;
-import com.darichey.dungeonCrawler.event.EventManager;
-import com.darichey.dungeonCrawler.event.world.block.BlockPlacedEvent;
 import com.darichey.dungeonCrawler.gui.GuiHUD;
 import com.darichey.dungeonCrawler.gui.GuiPlayerInventory;
-import com.darichey.dungeonCrawler.init.Entities;
 import com.darichey.dungeonCrawler.inventory.Slot;
-import com.darichey.dungeonCrawler.item.base.ItemBase;
 import com.darichey.dungeonCrawler.item.placeable.ItemPlaceableBase;
 import com.darichey.dungeonCrawler.item.stack.ItemStack;
 import com.darichey.dungeonCrawler.screens.GameScreen;
@@ -64,7 +60,7 @@ public class InputHandler extends InputAdapter
                 ItemStack stackInHand = player.getSelectedStack();
                 if (stackInHand != null)
                 {
-                    if (stackInHand.getItem() instanceof ItemPlaceableBase)
+                    if (stackInHand.getItem().isPlaceable())
                     {
                         GameEntity placeEntity = ((ItemPlaceableBase) stackInHand.getItem()).getEntity();
                         if (stackInHand.amount != -1)
