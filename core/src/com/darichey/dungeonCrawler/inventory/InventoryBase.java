@@ -25,7 +25,7 @@ public abstract class InventoryBase
     {
         for (Slot slot : slots)
         {
-            if (slot.getItemSpace() > 0)
+            if (slot.getRemainingSpace() > 0 && slot.getItemStack().getItem().equals(stack.getItem()))
             {
                 return slot;
             }
@@ -49,5 +49,10 @@ public abstract class InventoryBase
         {
             slot.update();
         }
+    }
+
+    public void addSlot(Slot slot)
+    {
+        this.getSlots().add(slot);
     }
 }

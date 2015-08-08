@@ -4,13 +4,14 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.darichey.dungeonCrawler.entity.base.GameEntity;
 import com.darichey.dungeonCrawler.entity.block.EntityBlockBase;
 import com.darichey.dungeonCrawler.entity.living.EntityPlayer;
 import com.darichey.dungeonCrawler.gui.GuiHUD;
-import com.darichey.dungeonCrawler.gui.GuiPlayerInventory;
+import com.darichey.dungeonCrawler.gui.GuiInventory;
 import com.darichey.dungeonCrawler.inventory.Slot;
 import com.darichey.dungeonCrawler.item.placeable.ItemPlaceableBase;
 import com.darichey.dungeonCrawler.item.stack.ItemStack;
@@ -37,7 +38,13 @@ public class InputHandler extends InputAdapter
     public boolean touchDown(int screenX, int screenY, int pointer, int button)
     {
         Vector3 touchPos = new Vector3(screenX, screenY, 0);
-        System.out.println(touchPos);
+
+        if (slotExistsAt(new Vector2(touchPos.x, touchPos.y)))
+        {
+
+            return true;
+        }
+
         Vector3 unroundedWorldPos = camera.unproject(touchPos);
         Vector2 worldPos = new Vector2((float) Math.floor(unroundedWorldPos.x), (float) Math.floor(unroundedWorldPos.y));
         GameEntity entity = world.getEntityAt(worldPos);
@@ -102,7 +109,8 @@ public class InputHandler extends InputAdapter
 
         if (keycode == Input.Keys.E)
         {
-            GameScreen.guiRenderer.showGui(player.hasInventoryOpen() ? new GuiHUD(player) : new GuiPlayerInventory(player.getInventory()));
+            ((GuiHUD)GameScreen.guiRenderer.getCurrentGui()).setShowInventory(!((GuiHUD)GameScreen.guiRenderer.getCurrentGui()).getShowInventory());
+            return true;
         }
         return false;
     }

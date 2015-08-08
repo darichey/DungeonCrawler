@@ -8,19 +8,33 @@ public class InventoryPlayer extends InventoryBase
 {
     public InventoryPlayer()
     {
-        for (int i = 0; i < 50; i++)
+        for (int y = 0; y < 5; y++)
         {
-            Slot slot = new Slot(this, Vector2.Zero);
+            for (int x = 0; x < 10; x++)
+            {
+                Slot slot = new Slot(this, new Vector2(28 + x * 36, 975 - (y * 36)));
+                addSlot(slot);
+            }
         }
     }
 
-    public ArrayList<Slot> getHotBarSlots()
+    public ArrayList<Slot> getMainSlots()
     {
-        ArrayList<Slot> hotBarSlots = new ArrayList<Slot>();
+        ArrayList<Slot> mainSlots = new ArrayList<Slot>();
+        for (int i = 10; i < 50; i++)
+        {
+            mainSlots.add(getSlot(i));
+        }
+        return mainSlots;
+    }
+
+    public ArrayList<Slot> getHotbarSlots()
+    {
+        ArrayList<Slot> hotbarSlots = new ArrayList<Slot>();
         for (int i = 0; i < 10; i++)
         {
-            hotBarSlots.add(getSlot(i));
+            hotbarSlots.add(getSlot(i));
         }
-        return hotBarSlots;
+        return hotbarSlots;
     }
 }

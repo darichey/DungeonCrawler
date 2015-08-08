@@ -2,12 +2,10 @@ package com.darichey.dungeonCrawler.entity.living;
 
 import com.badlogic.gdx.math.Vector2;
 import com.darichey.dungeonCrawler.entity.base.LivingEntity;
-import com.darichey.dungeonCrawler.gui.GuiPlayerInventory;
 import com.darichey.dungeonCrawler.inventory.InventoryPlayer;
 import com.darichey.dungeonCrawler.item.stack.ItemStack;
 import com.darichey.dungeonCrawler.reference.Names;
 import com.darichey.dungeonCrawler.reference.TextureLibrary;
-import com.darichey.dungeonCrawler.screens.GameScreen;
 import com.darichey.dungeonCrawler.world.World;
 
 /**
@@ -50,10 +48,5 @@ public class EntityPlayer extends LivingEntity
     public ItemStack getSelectedStack()
     {
         return getInventory().getStackInSlot(getSelectedSlotIndex());
-    }
-
-    public boolean hasInventoryOpen()
-    {
-        return GameScreen.guiRenderer.getCurrentGui() instanceof GuiPlayerInventory;
     }
 }

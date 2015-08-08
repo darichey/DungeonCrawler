@@ -37,7 +37,6 @@ public class Slot
     {
         this.setDisplayPos(displayPos);
         this.inventory = inventory;
-        this.inventory.getSlots().add(this);
         this.slotImage.setScale(2);
     }
 
@@ -63,7 +62,7 @@ public class Slot
         }
     }
 
-    public int getItemSpace()
+    public int getRemainingSpace()
     {
         return itemStack == null ? ItemStack.maxAmount : ItemStack.maxAmount - itemStack.getAmount();
     }

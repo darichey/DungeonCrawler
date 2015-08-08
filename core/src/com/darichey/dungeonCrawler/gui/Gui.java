@@ -5,6 +5,10 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 public abstract class Gui
 {
     private String name;
+
+    /**
+     * The stage which this gui will be rendered onto.
+     */
     private Stage stage;
 
     public Gui(String name, Stage stage)
