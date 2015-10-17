@@ -9,12 +9,9 @@ import com.badlogic.gdx.math.Vector3;
 import com.darichey.dungeonCrawler.entity.base.GameEntity;
 import com.darichey.dungeonCrawler.entity.block.EntityBlockBase;
 import com.darichey.dungeonCrawler.entity.living.EntityPlayer;
-import com.darichey.dungeonCrawler.gui.GuiHUD;
-import com.darichey.dungeonCrawler.gui.GuiPlayerInventory;
 import com.darichey.dungeonCrawler.inventory.Slot;
 import com.darichey.dungeonCrawler.item.placeable.ItemPlaceableBase;
 import com.darichey.dungeonCrawler.item.stack.ItemStack;
-import com.darichey.dungeonCrawler.screens.GameScreen;
 import com.darichey.dungeonCrawler.world.World;
 
 /**
@@ -100,10 +97,12 @@ public class InputHandler extends InputAdapter
             return true;
         }
 
+        /*
         if (keycode == Input.Keys.E)
         {
             GameScreen.guiRenderer.showGui(player.hasInventoryOpen() ? new GuiHUD(player) : new GuiPlayerInventory(player.getInventory()));
         }
+        */
         return false;
     }
 
