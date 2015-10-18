@@ -1,7 +1,7 @@
 package com.darichey.dungeonCrawler.event.world.block;
 
 import com.darichey.dungeonCrawler.entity.base.GameEntity;
-import com.darichey.dungeonCrawler.entity.block.EntityBlockBase;
+import com.darichey.dungeonCrawler.entity.block.BlockBase;
 
 public class BlockPlacedEvent extends BlockEvent
 {
@@ -11,7 +11,7 @@ public class BlockPlacedEvent extends BlockEvent
      * @param entity The source of the placed block. Normally an {@link com.darichey.dungeonCrawler.entity.living.EntityPlayer}
      * @param block  The block placed.
      */
-    public BlockPlacedEvent(GameEntity entity, EntityBlockBase block)
+    public BlockPlacedEvent(GameEntity entity, BlockBase block)
     {
         super(block);
         this.entity = entity;

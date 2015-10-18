@@ -2,7 +2,7 @@ package com.darichey.dungeonCrawler.world.chunk;
 
 import com.badlogic.gdx.math.Vector2;
 import com.darichey.dungeonCrawler.entity.base.GameEntity;
-import com.darichey.dungeonCrawler.entity.block.EntityBlockBase;
+import com.darichey.dungeonCrawler.entity.block.BlockBase;
 import com.darichey.dungeonCrawler.init.Entities;
 import com.darichey.dungeonCrawler.init.register.EntityRegistry;
 import com.darichey.dungeonCrawler.world.World;
@@ -68,7 +68,7 @@ public class Chunk
         ArrayList<Vector2> pos = new ArrayList<Vector2>();
         for (GameEntity entity : EntityRegistry.getRegisteredEntities())
         {
-            if (entity instanceof EntityBlockBase)
+            if (entity instanceof BlockBase)
             {
                 pos.addAll(entityTileMap.getPositionsForEntity(entity));
             }

@@ -10,7 +10,9 @@ public abstract class GuiFragment
     public GuiBase parentGui;
     public String name;
 
-    /** List of actors that will be added to the parent GUI's stage **/
+    /**
+     * List of actors that will be added to the parent GUI's stage *
+     */
     private ArrayList<Actor> actors = new ArrayList<Actor>();
 
     public GuiFragment(String name)

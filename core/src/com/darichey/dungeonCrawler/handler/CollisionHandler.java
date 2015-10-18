@@ -3,7 +3,7 @@ package com.darichey.dungeonCrawler.handler;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.darichey.dungeonCrawler.entity.base.DynamicEntity;
-import com.darichey.dungeonCrawler.entity.block.EntityBlockBase;
+import com.darichey.dungeonCrawler.entity.block.BlockBase;
 import com.darichey.dungeonCrawler.world.World;
 
 /**
@@ -42,7 +42,7 @@ public class CollisionHandler extends HandlerBase
         {
             for (Vector2 blockPos : world.getBlockPositions())
             {
-                EntityBlockBase block = (EntityBlockBase) world.getEntityAt(blockPos);
+                BlockBase block = (BlockBase) world.getEntityAt(blockPos);
                 Rectangle dynamicBounds = dynamic.getBounds();
                 Rectangle blockBounds = new Rectangle(blockPos.x, blockPos.y, block.width, block.height);
 

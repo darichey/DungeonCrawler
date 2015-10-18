@@ -6,7 +6,7 @@ import com.darichey.dungeonCrawler.reference.TextureLibrary;
 /**
  * Temporary block for testing
  */
-public class BlockStone extends EntityBlockBase
+public class BlockStone extends BlockBase
 {
     public BlockStone()
     {

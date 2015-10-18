@@ -5,9 +5,9 @@ import com.darichey.dungeonCrawler.entity.base.GameEntity;
 /**
  * Basic block entity.
  */
-public abstract class EntityBlockBase extends GameEntity
+public abstract class BlockBase extends GameEntity
 {
-    public EntityBlockBase()
+    public BlockBase()
     {
         this.width = 1;
         this.height = 1;

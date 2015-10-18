@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.darichey.dungeonCrawler.entity.base.GameEntity;
-import com.darichey.dungeonCrawler.entity.block.EntityBlockBase;
+import com.darichey.dungeonCrawler.entity.block.BlockBase;
 import com.darichey.dungeonCrawler.entity.living.EntityPlayer;
 import com.darichey.dungeonCrawler.gui.GuiHUD;
 import com.darichey.dungeonCrawler.gui.fragment.FragmentPlayerInventory;
@@ -46,7 +46,7 @@ public class InputHandler extends InputAdapter
         if (button == 0)
         {
             // Break block
-            if (entity != null && entity instanceof EntityBlockBase)
+            if (entity != null && entity instanceof BlockBase)
             {
                 ItemStack stack = new ItemStack(entity.getPlaceable(), 1);
                 Slot slot = player.getInventory().getNextValidSlotFor(stack);
