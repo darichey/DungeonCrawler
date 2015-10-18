@@ -8,9 +8,13 @@ public class InventoryPlayer extends InventoryBase
 {
     public InventoryPlayer()
     {
-        for (int i = 0; i < 50; i++)
+        for (int y = 0; y < 5; y++)
         {
-            Slot slot = new Slot(this, Vector2.Zero);
+            for (int x = 0; x < 10; x++)
+            {
+                Slot slot = new Slot(new Vector2(28 + (x * 36), 975 - (y * 36)));
+                addSlot(slot);
+            }
         }
     }
 
@@ -22,5 +26,25 @@ public class InventoryPlayer extends InventoryBase
             hotBarSlots.add(getSlot(i));
         }
         return hotBarSlots;
+    }
+
+    public InventoryPlayerNoHotbar getNoHotbarInventory()
+    {
+        return new InventoryPlayerNoHotbar(this);
+    }
+
+    /**
+     * A version of the player's inventory with no hotbar slots.
+     */
+    private class InventoryPlayerNoHotbar extends InventoryBase
+    {
+        public InventoryPlayerNoHotbar(InventoryPlayer inventory)
+        {
+            super(inventory);
+            for (int i = 0; i < 10; i++)
+            {
+                this.getSlots().remove(0);
+            }
+        }
     }
 }

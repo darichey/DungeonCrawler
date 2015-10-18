@@ -10,7 +10,8 @@ public class InventoryHUD extends InventoryBase
     {
         for (int i = 0; i < 10; i++)
         {
-            Slot slot = new Slot(this, new Vector2(28 + ((i * 36)), 975));
+            Slot slot = new Slot(new Vector2(28 + ((i * 36)), 975));
+            addSlot(slot);
             slot.setItemStack(inventoryPlayer.getStackInSlot(i));
         }
         this.inventoryPlayer = inventoryPlayer;

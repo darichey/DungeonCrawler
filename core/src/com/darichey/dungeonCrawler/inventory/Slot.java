@@ -24,20 +24,13 @@ public class Slot
      */
     private Vector2 displayPos;
 
-    /**
-     * The inventory that this slot belongs to.
-     */
-    private InventoryBase inventory;
-
     public Label amountLabel = new Label("", GameScreen.labelStyle);
     public Image itemImage = new Image();
     public Image slotImage = new Image(new TextureRegionDrawable(new TextureRegion(new Texture("Slot.png"))));
 
-    public Slot(InventoryBase inventory, Vector2 displayPos)
+    public Slot(Vector2 displayPos)
     {
         this.setDisplayPos(displayPos);
-        this.inventory = inventory;
-        this.inventory.getSlots().add(this);
         this.slotImage.setScale(2);
     }
 

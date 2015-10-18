@@ -2,6 +2,7 @@ package com.darichey.dungeonCrawler.entity.living;
 
 import com.badlogic.gdx.math.Vector2;
 import com.darichey.dungeonCrawler.entity.base.LivingEntity;
+import com.darichey.dungeonCrawler.inventory.InventoryBase;
 import com.darichey.dungeonCrawler.inventory.InventoryPlayer;
 import com.darichey.dungeonCrawler.item.stack.ItemStack;
 import com.darichey.dungeonCrawler.reference.Names;

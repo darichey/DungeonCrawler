@@ -11,6 +11,19 @@ public abstract class InventoryBase
 {
     private ArrayList<Slot> slots = new ArrayList<Slot>();
 
+    public InventoryBase()
+    {
+
+    }
+
+    public InventoryBase(InventoryBase inventoryBase)
+    {
+        for (int i = 0; i < inventoryBase.getSlots().size(); i++)
+        {
+            this.getSlots().add(inventoryBase.getSlot(i));
+        }
+    }
+
     public void setStackInSlot(int slotIndex, ItemStack stack)
     {
         this.slots.get(slotIndex).setItemStack(stack);
@@ -48,6 +61,14 @@ public abstract class InventoryBase
         for (Slot slot : getSlots())
         {
             slot.update();
+        }
+    }
+
+    public void addSlot(Slot slot)
+    {
+        if (!getSlots().contains(slot))
+        {
+            getSlots().add(slot);
         }
     }
 }
