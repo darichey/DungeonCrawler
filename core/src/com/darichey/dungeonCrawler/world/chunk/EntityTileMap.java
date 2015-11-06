@@ -3,6 +3,7 @@ package com.darichey.dungeonCrawler.world.chunk;
 import com.badlogic.gdx.math.Vector2;
 import com.darichey.dungeonCrawler.entity.base.GameEntity;
 import com.darichey.dungeonCrawler.init.register.EntityRegistry;
+import com.darichey.dungeonCrawler.util.Logger;
 
 import java.util.ArrayList;
 
@@ -67,9 +68,9 @@ public class EntityTileMap
         {
             for (int x = 0; x < xSize; x++)
             {
-                System.out.print(entityMap[x][ySize - y - 1]);
+                Logger.log(Integer.toString(entityMap[x][ySize - y - 1]));
             }
-            System.out.println("");
+            Logger.log("");
         }
     }
 }

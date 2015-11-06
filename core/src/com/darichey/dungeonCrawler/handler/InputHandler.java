@@ -39,7 +39,6 @@ public class InputHandler extends InputAdapter
     public boolean touchDown(int screenX, int screenY, int pointer, int button)
     {
         Vector3 touchPos = new Vector3(screenX, screenY, 0);
-        System.out.println(touchPos);
         Vector3 unroundedWorldPos = camera.unproject(touchPos);
         Vector2 worldPos = new Vector2((float) Math.floor(unroundedWorldPos.x), (float) Math.floor(unroundedWorldPos.y));
         GameEntity entity = world.getEntityAt(worldPos);
@@ -70,7 +69,6 @@ public class InputHandler extends InputAdapter
                             stackInHand.amount--;
                             if (stackInHand.amount == 0)
                             {
-                                System.out.println("set null");
                                 player.getInventory().setStackInSlot(player.getSelectedSlotIndex(), null);
                             }
                         }

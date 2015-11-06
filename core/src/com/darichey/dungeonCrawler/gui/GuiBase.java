@@ -1,8 +1,10 @@
 package com.darichey.dungeonCrawler.gui;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.darichey.dungeonCrawler.gui.fragment.GuiFragment;
+import com.darichey.dungeonCrawler.util.Logger;
 
 import java.util.ArrayList;
 
@@ -43,12 +45,12 @@ public abstract class GuiBase
             }
             else
             {
-                System.out.println("GuiFragment already belongs to another Gui.");
+                Logger.log("GuiFragment already belongs to another Gui.");
             }
         }
         else
         {
-            System.out.println("Attempt to add already-existing GuiFragment to Gui.");
+            Logger.log("Attempt to add already-existing GuiFragment to Gui.");
         }
     }
 
@@ -65,7 +67,7 @@ public abstract class GuiBase
         }
         else
         {
-            System.out.println("Attempt to remove nonexistent GuiFragment from Gui.");
+            Logger.log("Attempt to remove nonexistent GuiFragment from Gui.");
         }
     }
 

@@ -1,5 +1,4 @@
 package com.darichey.dungeonCrawler.render;
-
 import com.darichey.dungeonCrawler.gui.GuiBase;
 
 public class GuiRenderer

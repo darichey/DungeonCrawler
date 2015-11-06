@@ -19,7 +19,7 @@ public class WorldRenderer
 {
     private SpriteBatch batch;
     private World world;
-    private ShapeRenderer debugRenderer = new ShapeRenderer();
+    public static ShapeRenderer debugRenderer = new ShapeRenderer();
     public OrthographicCamera camera;
     public static boolean debugRender = false;
 
@@ -43,7 +43,7 @@ public class WorldRenderer
 
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
-        renderWalls();
+        renderBlocks();
         renderDynamics();
         batch.end();
 
@@ -55,12 +55,12 @@ public class WorldRenderer
         debugRenderer.setProjectionMatrix(camera.combined);
         debugRenderer.begin(ShapeRenderer.ShapeType.Line);
         debugRenderer.setColor(1, 1, 0, 1);
-        renderWallDebug();
+        renderBlockDebug();
         renderDynamicsDebug();
         debugRenderer.end();
     }
 
-    private void renderWalls()
+    private void renderBlocks()
     {
         for (Chunk chunk : world.chunks)
         {
@@ -91,7 +91,7 @@ public class WorldRenderer
         }
     }
 
-    private void renderWallDebug()
+    private void renderBlockDebug()
     {
         for (Chunk chunk : world.chunks)
         {

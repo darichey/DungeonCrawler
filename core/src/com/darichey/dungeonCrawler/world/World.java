@@ -57,6 +57,7 @@ public class World
     public GameEntity getEntityAt(Vector2 pos)
     {
         Chunk chunk = getChunkFromWorldPos(pos);
+        if (chunk == null) return null;
         GameEntity entity = chunk.getEntityAt(chunk.getChunkPosForPos(pos));
         if (entity == null)
         {
@@ -75,6 +76,7 @@ public class World
     public void setEntityAt(GameEntity entity, Vector2 pos)
     {
         Chunk chunk = getChunkFromWorldPos(pos);
+        if (chunk == null) return;
         chunk.setEntityAt(entity, chunk.getChunkPosForPos(pos));
     }
 
