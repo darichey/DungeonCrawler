@@ -12,35 +12,35 @@ import com.darichey.dungeonCrawler.world.World;
  * The player entity of the game
  */
 public class EntityPlayer extends LivingEntity {
-    private InventoryPlayer inventory = new InventoryPlayer();
-    private int selectedSlotIndex = 0;
+	private InventoryPlayer inventory = new InventoryPlayer();
+	private int selectedSlotIndex = 0;
 
-    public EntityPlayer(World world, Vector2 pos) {
-        setPos(pos);
-        this.width = 1;
-        this.height = 2;
-        this.world = world;
-        this.texture = TextureLibrary.player;
-        this.health = 100;
-        this.movementSpeed = 6F;
-        this.dampingSpeed = .08F;
-        this.name = Names.player;
-        world.getDynamicEntities().add(this);
-    }
+	public EntityPlayer(World world, Vector2 pos) {
+		setPos(pos);
+		this.width = 1;
+		this.height = 2;
+		this.world = world;
+		this.texture = TextureLibrary.player;
+		this.health = 100;
+		this.movementSpeed = 6F;
+		this.dampingSpeed = .08F;
+		this.name = Names.player;
+		world.getDynamicEntities().add(this);
+	}
 
-    public InventoryPlayer getInventory() {
-        return this.inventory;
-    }
+	public InventoryPlayer getInventory() {
+		return this.inventory;
+	}
 
-    public int getSelectedSlotIndex() {
-        return this.selectedSlotIndex;
-    }
+	public int getSelectedSlotIndex() {
+		return this.selectedSlotIndex;
+	}
 
-    public void setSelectedSlot(int slot) {
-        this.selectedSlotIndex = slot;
-    }
+	public void setSelectedSlot(int slot) {
+		this.selectedSlotIndex = slot;
+	}
 
-    public ItemStack getSelectedStack() {
-        return getInventory().getStackInSlot(getSelectedSlotIndex());
-    }
+	public ItemStack getSelectedStack() {
+		return getInventory().getStackInSlot(getSelectedSlotIndex());
+	}
 }

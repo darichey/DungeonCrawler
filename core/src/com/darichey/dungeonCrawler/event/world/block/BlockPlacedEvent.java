@@ -4,23 +4,23 @@ import com.darichey.dungeonCrawler.entity.base.GameEntity;
 import com.darichey.dungeonCrawler.entity.block.BlockBase;
 
 public class BlockPlacedEvent extends BlockEvent {
-    private GameEntity entity;
+	private GameEntity entity;
 
-    /**
-     * @param entity The source of the placed block. Normally an {@link com.darichey.dungeonCrawler.entity.living.EntityPlayer}
-     * @param block  The block placed.
-     */
-    public BlockPlacedEvent(GameEntity entity, BlockBase block) {
-        super(block);
-        this.entity = entity;
-    }
+	/**
+	 * @param entity The source of the placed block. Normally an {@link com.darichey.dungeonCrawler.entity.living.EntityPlayer}
+	 * @param block  The block placed.
+	 */
+	public BlockPlacedEvent(GameEntity entity, BlockBase block) {
+		super(block);
+		this.entity = entity;
+	}
 
-    public GameEntity getEntity() {
-        return this.entity;
-    }
+	public GameEntity getEntity() {
+		return this.entity;
+	}
 
-    @Override
-    public boolean isCancelable() {
-        return true;
-    }
+	@Override
+	public boolean isCancelable() {
+		return true;
+	}
 }

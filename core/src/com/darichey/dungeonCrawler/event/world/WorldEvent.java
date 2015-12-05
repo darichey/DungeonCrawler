@@ -7,13 +7,13 @@ import com.darichey.dungeonCrawler.world.World;
  * Event happening within the world.
  */
 public class WorldEvent extends Event {
-    protected World world;
+	protected World world;
 
-    public WorldEvent(World world) {
-        this.world = world;
-    }
+	public WorldEvent(World world) {
+		this.world = world;
+	}
 
-    public final World getWorld() {
-        return this.world;
-    }
+	public final World getWorld() {
+		return this.world;
+	}
 }

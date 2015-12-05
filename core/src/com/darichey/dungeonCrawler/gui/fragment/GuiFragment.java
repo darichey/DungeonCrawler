@@ -6,27 +6,27 @@ import com.darichey.dungeonCrawler.gui.GuiBase;
 import java.util.ArrayList;
 
 public abstract class GuiFragment {
-    public GuiBase parentGui;
-    public String name;
+	public GuiBase parentGui;
+	public String name;
 
-    /**
-     * List of actors that will be added to the parent GUI's stage *
-     */
-    private ArrayList<Actor> actors = new ArrayList<Actor>();
+	/**
+	 * List of actors that will be added to the parent GUI's stage *
+	 */
+	private ArrayList<Actor> actors = new ArrayList<Actor>();
 
-    public GuiFragment(String name) {
-        this.name = name;
-    }
+	public GuiFragment(String name) {
+		this.name = name;
+	}
 
-    public GuiBase getParentGui() {
-        return this.parentGui;
-    }
+	public GuiBase getParentGui() {
+		return this.parentGui;
+	}
 
-    public ArrayList<Actor> getActors() {
-        return this.actors;
-    }
+	public ArrayList<Actor> getActors() {
+		return this.actors;
+	}
 
-    public void update() {
+	public void update() {
 
-    }
+	}
 }

@@ -19,43 +19,43 @@ import com.darichey.dungeonCrawler.world.World;
  * Main playing screen for the game
  */
 public class GameScreen extends ScreenAdapter {
-    private World world;
-    private WorldRenderer worldRenderer;
-    public static GuiRenderer guiRenderer;
-    private HandlerBase movementHandler;
-    private HandlerBase collisionHandler;
-    private InputHandler inputHandler;
+	private World world;
+	private WorldRenderer worldRenderer;
+	public static GuiRenderer guiRenderer;
+	private HandlerBase movementHandler;
+	private HandlerBase collisionHandler;
+	private InputHandler inputHandler;
 
-    public static Label.LabelStyle labelStyle = new Label.LabelStyle(new BitmapFont(), Color.WHITE);
+	public static Label.LabelStyle labelStyle = new Label.LabelStyle(new BitmapFont(), Color.WHITE);
 
-    public GameScreen() {
-        Entities.init();
-        Items.init();
+	public GameScreen() {
+		Entities.init();
+		Items.init();
 
-        world = new World();
-        worldRenderer = new WorldRenderer(world);
-        guiRenderer = new GuiRenderer();
-        movementHandler = new MovementHandler(world.player);
-        collisionHandler = new CollisionHandler(world);
-        inputHandler = new InputHandler(world, worldRenderer.camera);
+		world = new World();
+		worldRenderer = new WorldRenderer(world);
+		guiRenderer = new GuiRenderer();
+		movementHandler = new MovementHandler(world.player);
+		collisionHandler = new CollisionHandler(world);
+		inputHandler = new InputHandler(world, worldRenderer.camera);
 
-        Gdx.input.setInputProcessor(inputHandler);
-        EventManager.register(new EventListener());
-        guiRenderer.showGui(new GuiHUD(world.player));
-        guiRenderer.getCurrentGui().addFragment(new FragmentHotbar(world.player));
-    }
+		Gdx.input.setInputProcessor(inputHandler);
+		EventManager.register(new EventListener());
+		guiRenderer.showGui(new GuiHUD(world.player));
+		guiRenderer.getCurrentGui().addFragment(new FragmentHotbar(world.player));
+	}
 
-    public void update(float delta) {
-        world.update();
-        movementHandler.update(delta);
-        collisionHandler.update(delta);
-        inputHandler.update();
-    }
+	public void update(float delta) {
+		world.update();
+		movementHandler.update(delta);
+		collisionHandler.update(delta);
+		inputHandler.update();
+	}
 
-    @Override
-    public void render(float delta) {
-        update(delta);
-        worldRenderer.render();
-        guiRenderer.render();
-    }
+	@Override
+	public void render(float delta) {
+		update(delta);
+		worldRenderer.render();
+		guiRenderer.render();
+	}
 }
