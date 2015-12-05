@@ -11,13 +11,11 @@ import com.darichey.dungeonCrawler.world.World;
 /**
  * The player entity of the game
  */
-public class EntityPlayer extends LivingEntity
-{
+public class EntityPlayer extends LivingEntity {
     private InventoryPlayer inventory = new InventoryPlayer();
     private int selectedSlotIndex = 0;
 
-    public EntityPlayer(World world, Vector2 pos)
-    {
+    public EntityPlayer(World world, Vector2 pos) {
         setPos(pos);
         this.width = 1;
         this.height = 2;
@@ -30,23 +28,19 @@ public class EntityPlayer extends LivingEntity
         world.getDynamicEntities().add(this);
     }
 
-    public InventoryPlayer getInventory()
-    {
+    public InventoryPlayer getInventory() {
         return this.inventory;
     }
 
-    public int getSelectedSlotIndex()
-    {
+    public int getSelectedSlotIndex() {
         return this.selectedSlotIndex;
     }
 
-    public void setSelectedSlot(int slot)
-    {
+    public void setSelectedSlot(int slot) {
         this.selectedSlotIndex = slot;
     }
 
-    public ItemStack getSelectedStack()
-    {
+    public ItemStack getSelectedStack() {
         return getInventory().getStackInSlot(getSelectedSlotIndex());
     }
 }

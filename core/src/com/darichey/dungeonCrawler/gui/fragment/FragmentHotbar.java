@@ -9,13 +9,11 @@ import com.darichey.dungeonCrawler.inventory.InventoryHUD;
 import com.darichey.dungeonCrawler.reference.Names;
 import com.darichey.dungeonCrawler.reference.TextureLibrary;
 
-public class FragmentHotbar extends FragmentInventory
-{
+public class FragmentHotbar extends FragmentInventory {
     private Image selectedSlot = new Image(new TextureRegionDrawable(new TextureRegion(TextureLibrary.slotSelected)));
     private EntityPlayer player;
 
-    public FragmentHotbar(EntityPlayer player)
-    {
+    public FragmentHotbar(EntityPlayer player) {
         super(new InventoryHUD(player.getInventory()), Names.hotbar);
         this.player = player;
 
@@ -24,8 +22,7 @@ public class FragmentHotbar extends FragmentInventory
     }
 
     @Override
-    public void update()
-    {
+    public void update() {
         // Render the selection indicator around the selected slot.
         Vector2 selectedDisplayPos = this.inventory.getSlot(player.getSelectedSlotIndex()).getDisplayPos();
         this.selectedSlot.setPosition(selectedDisplayPos.x, selectedDisplayPos.y);

@@ -1,22 +1,19 @@
 package com.darichey.dungeonCrawler.render;
+
 import com.darichey.dungeonCrawler.gui.GuiBase;
 
-public class GuiRenderer
-{
+public class GuiRenderer {
     private GuiBase gui;
 
-    public void render()
-    {
+    public void render() {
         gui.render();
     }
 
-    public void showGui(GuiBase gui)
-    {
+    public void showGui(GuiBase gui) {
         this.gui = gui;
     }
 
-    public GuiBase getCurrentGui()
-    {
+    public GuiBase getCurrentGui() {
         return this.gui;
     }
 }

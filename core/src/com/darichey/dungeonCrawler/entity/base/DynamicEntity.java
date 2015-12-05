@@ -6,8 +6,7 @@ import com.badlogic.gdx.math.Vector2;
 /**
  * The base for dynamic entities. Dynamic entities are entities that can change position
  */
-public abstract class DynamicEntity extends GameEntity
-{
+public abstract class DynamicEntity extends GameEntity {
     /**
      * Current position of the entity *
      */
@@ -19,68 +18,55 @@ public abstract class DynamicEntity extends GameEntity
 
     public float dampingSpeed;
 
-    public Vector2 getPos()
-    {
+    public Vector2 getPos() {
         return pos;
     }
 
-    public void setPos(Vector2 pos)
-    {
+    public void setPos(Vector2 pos) {
         this.pos = pos;
     }
 
-    public void setPosX(float posX)
-    {
+    public void setPosX(float posX) {
         setPos(new Vector2(posX, getPos().y));
     }
 
-    public void setPosY(float posY)
-    {
+    public void setPosY(float posY) {
         setPos(new Vector2(getPos().x, posY));
     }
 
-    public Rectangle getBounds()
-    {
+    public Rectangle getBounds() {
         return new Rectangle(getPos().x, getPos().y, width, height);
     }
 
-    public Vector2 getVelocity()
-    {
+    public Vector2 getVelocity() {
         return this.velocity;
     }
 
-    public void setVelocity(Vector2 velocity)
-    {
+    public void setVelocity(Vector2 velocity) {
         this.velocity = velocity;
     }
 
-    public void setVelocityX(float velocityX)
-    {
+    public void setVelocityX(float velocityX) {
         setVelocity(new Vector2(velocityX, getVelocity().y));
     }
 
-    public void setVelocityY(float velocityY)
-    {
+    public void setVelocityY(float velocityY) {
         setVelocity(new Vector2(getVelocity().x, velocityY));
     }
 
-    public float getMovementSpeed()
-    {
+    public float getMovementSpeed() {
         return this.movementSpeed;
     }
 
-    public void setMovementSpeed(float speed)
-    {
+    public void setMovementSpeed(float speed) {
         this.movementSpeed = speed;
     }
 
-    public float getDampingSpeed()
-    {
+    public float getDampingSpeed() {
         return this.dampingSpeed;
     }
 
-    public void setDampingSpeed(float speed)
-    {
+    public void setDampingSpeed(float speed) {
         this.dampingSpeed = speed;
     }
 }

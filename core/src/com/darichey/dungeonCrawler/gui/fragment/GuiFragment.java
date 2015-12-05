@@ -5,8 +5,7 @@ import com.darichey.dungeonCrawler.gui.GuiBase;
 
 import java.util.ArrayList;
 
-public abstract class GuiFragment
-{
+public abstract class GuiFragment {
     public GuiBase parentGui;
     public String name;
 
@@ -15,23 +14,19 @@ public abstract class GuiFragment
      */
     private ArrayList<Actor> actors = new ArrayList<Actor>();
 
-    public GuiFragment(String name)
-    {
+    public GuiFragment(String name) {
         this.name = name;
     }
 
-    public GuiBase getParentGui()
-    {
+    public GuiBase getParentGui() {
         return this.parentGui;
     }
 
-    public ArrayList<Actor> getActors()
-    {
+    public ArrayList<Actor> getActors() {
         return this.actors;
     }
 
-    public void update()
-    {
+    public void update() {
 
     }
 }

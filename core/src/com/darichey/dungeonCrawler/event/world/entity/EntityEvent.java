@@ -6,18 +6,15 @@ import com.darichey.dungeonCrawler.event.world.WorldEvent;
 /**
  * Event involving a single entity
  */
-public class EntityEvent extends WorldEvent
-{
+public class EntityEvent extends WorldEvent {
     protected GameEntity entity;
 
-    public EntityEvent(GameEntity entity)
-    {
+    public EntityEvent(GameEntity entity) {
         super(entity.getWorld());
         this.entity = entity;
     }
 
-    public final GameEntity getEntity()
-    {
+    public final GameEntity getEntity() {
         return this.entity;
     }
 }

@@ -18,8 +18,7 @@ import com.darichey.dungeonCrawler.world.World;
 /**
  * Main playing screen for the game
  */
-public class GameScreen extends ScreenAdapter
-{
+public class GameScreen extends ScreenAdapter {
     private World world;
     private WorldRenderer worldRenderer;
     public static GuiRenderer guiRenderer;
@@ -29,8 +28,7 @@ public class GameScreen extends ScreenAdapter
 
     public static Label.LabelStyle labelStyle = new Label.LabelStyle(new BitmapFont(), Color.WHITE);
 
-    public GameScreen()
-    {
+    public GameScreen() {
         Entities.init();
         Items.init();
 
@@ -47,8 +45,7 @@ public class GameScreen extends ScreenAdapter
         guiRenderer.getCurrentGui().addFragment(new FragmentHotbar(world.player));
     }
 
-    public void update(float delta)
-    {
+    public void update(float delta) {
         world.update();
         movementHandler.update(delta);
         collisionHandler.update(delta);
@@ -56,8 +53,7 @@ public class GameScreen extends ScreenAdapter
     }
 
     @Override
-    public void render(float delta)
-    {
+    public void render(float delta) {
         update(delta);
         worldRenderer.render();
         guiRenderer.render();

@@ -20,15 +20,13 @@ import com.darichey.dungeonCrawler.world.World;
 /**
  * Handles mouse and keyboard input
  */
-public class InputHandler extends InputAdapter
-{
+public class InputHandler extends InputAdapter {
     private World world;
     private OrthographicCamera camera;
     private EntityPlayer player;
     private FragmentPlayerInventory fragmentPlayerInventory;
 
-    public InputHandler(World world, OrthographicCamera camera)
-    {
+    public InputHandler(World world, OrthographicCamera camera) {
         this.world = world;
         this.camera = camera;
         this.player = world.player;
@@ -36,39 +34,29 @@ public class InputHandler extends InputAdapter
     }
 
     @Override
-    public boolean touchDown(int screenX, int screenY, int pointer, int button)
-    {
+    public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         Vector3 touchPos = new Vector3(screenX, screenY, 0);
         Vector3 unroundedWorldPos = camera.unproject(touchPos);
         Vector2 worldPos = new Vector2((float) Math.floor(unroundedWorldPos.x), (float) Math.floor(unroundedWorldPos.y));
         GameEntity entity = world.getEntityAt(worldPos);
-        if (button == 0)
-        {
+        if (button == 0) {
             // Break block
-            if (entity != null && entity instanceof BlockBase)
-            {
+            if (entity != null && entity instanceof BlockBase) {
                 ItemStack stack = new ItemStack(entity.getPlaceable(), 1);
                 Slot slot = player.getInventory().getNextValidSlotFor(stack);
                 slot.addStack(stack);
                 world.setEntityAt(null, worldPos);
             }
-        }
-        else if (button == 1)
-        {
+        } else if (button == 1) {
             // Place entity
-            if (entity == null)
-            {
+            if (entity == null) {
                 ItemStack stackInHand = player.getSelectedStack();
-                if (stackInHand != null)
-                {
-                    if (stackInHand.getItem().isPlaceable())
-                    {
+                if (stackInHand != null) {
+                    if (stackInHand.getItem().isPlaceable()) {
                         GameEntity placeEntity = ((ItemPlaceableBase) stackInHand.getItem()).getEntity();
-                        if (stackInHand.amount != -1)
-                        {
+                        if (stackInHand.amount != -1) {
                             stackInHand.amount--;
-                            if (stackInHand.amount == 0)
-                            {
+                            if (stackInHand.amount == 0) {
                                 player.getInventory().setStackInSlot(player.getSelectedSlotIndex(), null);
                             }
                         }
@@ -81,8 +69,7 @@ public class InputHandler extends InputAdapter
     }
 
     @Override
-    public boolean scrolled(int amount)
-    {
+    public boolean scrolled(int amount) {
         player.setSelectedSlot(player.getSelectedSlotIndex() + amount);
         if (player.getSelectedSlotIndex() < 0)
             player.setSelectedSlot(9);
@@ -92,24 +79,17 @@ public class InputHandler extends InputAdapter
     }
 
     @Override
-    public boolean keyDown(int keycode)
-    {
-        if (keycode >= Input.Keys.NUM_0 && keycode <= Input.Keys.NUM_9)
-        {
+    public boolean keyDown(int keycode) {
+        if (keycode >= Input.Keys.NUM_0 && keycode <= Input.Keys.NUM_9) {
             player.setSelectedSlot(keycode == Input.Keys.NUM_0 ? 9 : keycode - 8);
             return true;
         }
 
-        if (keycode == Input.Keys.E)
-        {
-            if (GameScreen.guiRenderer.getCurrentGui() instanceof GuiHUD)
-            {
-                if (GameScreen.guiRenderer.getCurrentGui().hasFragment(fragmentPlayerInventory))
-                {
+        if (keycode == Input.Keys.E) {
+            if (GameScreen.guiRenderer.getCurrentGui() instanceof GuiHUD) {
+                if (GameScreen.guiRenderer.getCurrentGui().hasFragment(fragmentPlayerInventory)) {
                     GameScreen.guiRenderer.getCurrentGui().removeFragment(fragmentPlayerInventory);
-                }
-                else
-                {
+                } else {
                     GameScreen.guiRenderer.getCurrentGui().addFragment(fragmentPlayerInventory);
                 }
             }
@@ -118,25 +98,20 @@ public class InputHandler extends InputAdapter
         return false;
     }
 
-    public void update()
-    {
-        if (Gdx.input.isKeyPressed(Input.Keys.D))
-        {
+    public void update() {
+        if (Gdx.input.isKeyPressed(Input.Keys.D)) {
             player.setVelocityX(player.getMovementSpeed());
         }
 
-        if (Gdx.input.isKeyPressed(Input.Keys.A))
-        {
+        if (Gdx.input.isKeyPressed(Input.Keys.A)) {
             player.setVelocityX(-player.getMovementSpeed());
         }
 
-        if (Gdx.input.isKeyPressed(Input.Keys.W))
-        {
+        if (Gdx.input.isKeyPressed(Input.Keys.W)) {
             player.setVelocityY(player.getMovementSpeed());
         }
 
-        if (Gdx.input.isKeyPressed(Input.Keys.S))
-        {
+        if (Gdx.input.isKeyPressed(Input.Keys.S)) {
             player.setVelocityY(-player.getMovementSpeed());
         }
     }

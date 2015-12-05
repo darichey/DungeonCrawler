@@ -10,8 +10,7 @@ import java.util.Set;
 /**
  * Registry for entities
  */
-public class EntityRegistry
-{
+public class EntityRegistry {
     private static HashMap<Integer, GameEntity> entities = new HashMap<Integer, GameEntity>();
     private static int nextID = 0;
 
@@ -20,10 +19,8 @@ public class EntityRegistry
      *
      * @param entity The entity to register
      */
-    public static void register(GameEntity entity)
-    {
-        if (entities.containsValue(entity))
-        {
+    public static void register(GameEntity entity) {
+        if (entities.containsValue(entity)) {
             throw new IllegalArgumentException("Attempt to register an already-registered entity: " + entity.getName());
         }
         entities.put(++nextID, entity);
@@ -35,8 +32,7 @@ public class EntityRegistry
      * @param id ID of the entity being searched for
      * @return The linked entity
      */
-    public static GameEntity getEntityFromID(int id)
-    {
+    public static GameEntity getEntityFromID(int id) {
         return entities.get(id);
     }
 
@@ -46,13 +42,10 @@ public class EntityRegistry
      * @param entity Entity to find ID for
      * @return ID of entity
      */
-    public static Integer getIDForEntity(GameEntity entity)
-    {
+    public static Integer getIDForEntity(GameEntity entity) {
         Set<Map.Entry<Integer, GameEntity>> entries = entities.entrySet();
-        for (Map.Entry entry : entries)
-        {
-            if (entry.getValue().equals(entity))
-            {
+        for (Map.Entry entry : entries) {
+            if (entry.getValue().equals(entity)) {
                 return (Integer) entry.getKey();
             }
         }
@@ -62,12 +55,10 @@ public class EntityRegistry
     /**
      * @return A list of all registered entities
      */
-    public static ArrayList<GameEntity> getRegisteredEntities()
-    {
+    public static ArrayList<GameEntity> getRegisteredEntities() {
         ArrayList<GameEntity> returnList = new ArrayList<GameEntity>();
         Set<Map.Entry<Integer, GameEntity>> entries = entities.entrySet();
-        for (Map.Entry entry : entries)
-        {
+        for (Map.Entry entry : entries) {
             returnList.add((GameEntity) entry.getValue());
         }
         return returnList;

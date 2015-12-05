@@ -7,8 +7,7 @@ import com.darichey.dungeonCrawler.world.World;
 /**
  * The base entity in the game. All entities should inherit this class.
  */
-public abstract class GameEntity
-{
+public abstract class GameEntity {
     /**
      * The bounds of the entity *
      */
@@ -35,28 +34,23 @@ public abstract class GameEntity
      */
     public ItemPlaceableBase placeable;
 
-    public Texture getTexture()
-    {
+    public Texture getTexture() {
         return this.texture;
     }
 
-    public String getName()
-    {
+    public String getName() {
         return this.name;
     }
 
-    public World getWorld()
-    {
+    public World getWorld() {
         return this.world;
     }
 
-    public ItemPlaceableBase getPlaceable()
-    {
+    public ItemPlaceableBase getPlaceable() {
         return this.placeable;
     }
 
-    public void setPlaceable(ItemPlaceableBase placeable)
-    {
+    public void setPlaceable(ItemPlaceableBase placeable) {
         this.placeable = placeable;
     }
 }
