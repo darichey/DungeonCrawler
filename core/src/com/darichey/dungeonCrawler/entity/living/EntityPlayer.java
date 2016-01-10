@@ -12,8 +12,11 @@ import com.darichey.dungeonCrawler.world.World;
  * The player entity of the game
  */
 public class EntityPlayer extends LivingEntity {
-	private InventoryPlayer inventory = new InventoryPlayer();
+	private InventoryPlayer inventory = new InventoryPlayer(this);
 	private int selectedSlotIndex = 0;
+
+	/** The itemstack the player has on their cursor **/
+	public ItemStack cursorItemStack;
 
 	public EntityPlayer(World world, Vector2 pos) {
 		setPos(pos);

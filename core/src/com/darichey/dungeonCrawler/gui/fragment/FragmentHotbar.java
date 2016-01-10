@@ -5,8 +5,6 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.darichey.dungeonCrawler.entity.living.EntityPlayer;
-import com.darichey.dungeonCrawler.inventory.InventoryHUD;
-import com.darichey.dungeonCrawler.reference.Names;
 import com.darichey.dungeonCrawler.reference.TextureLibrary;
 
 public class FragmentHotbar extends FragmentInventory {
@@ -14,7 +12,7 @@ public class FragmentHotbar extends FragmentInventory {
 	private EntityPlayer player;
 
 	public FragmentHotbar(EntityPlayer player) {
-		super(new InventoryHUD(player.getInventory()), Names.hotbar);
+		super(player.getInventory());
 		this.player = player;
 
 		this.selectedSlot.setScale(2);
@@ -24,7 +22,7 @@ public class FragmentHotbar extends FragmentInventory {
 	@Override
 	public void update() {
 		// Render the selection indicator around the selected slot.
-		Vector2 selectedDisplayPos = this.inventory.getSlot(player.getSelectedSlotIndex()).getDisplayPos();
+		Vector2 selectedDisplayPos = getInventory().getSlot(player.getSelectedSlotIndex()).getDisplayPos();
 		this.selectedSlot.setPosition(selectedDisplayPos.x, selectedDisplayPos.y);
 		super.update();
 	}

@@ -8,8 +8,10 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.darichey.dungeonCrawler.init.Items;
 import com.darichey.dungeonCrawler.item.stack.ItemStack;
 import com.darichey.dungeonCrawler.screens.GameScreen;
+import com.darichey.dungeonCrawler.util.Logger;
 
 /**
  * Used in Inventories to store items. Each slot stores one {@link com.darichey.dungeonCrawler.item.stack.ItemStack}
@@ -25,17 +27,44 @@ public class Slot {
 	 */
 	private Vector2 displayPos;
 
-	public Label amountLabel = new Label("", GameScreen.labelStyle);
+	public Label amountLabel = new Label("2", GameScreen.labelStyle);
 	public Image itemImage = new Image();
 	public Image slotImage = new Image(new TextureRegionDrawable(new TextureRegion(new Texture("Slot.png"))));
 
-	public Slot(Vector2 displayPos) {
+	public Slot(InventoryBase inventory, Vector2 displayPos) {
 		this.setDisplayPos(displayPos);
 		this.slotImage.setScale(2);
-		this.slotImage.addListener(new InputListener() {
+
+		itemImage.addListener(new InputListener() {
 			@Override
 			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-				System.out.println("gvfdsgfds");
+				if (inventory.getInteractingPlayer().cursorItemStack == null) {
+					// Pick up the itemstack in that slot
+					inventory.getInteractingPlayer().cursorItemStack = getItemStack();
+					setItemStack(null);
+				} else {
+					if (getItemStack() == null || inventory.getInteractingPlayer().cursorItemStack.getItem() != getItemStack().getItem()){
+						// Switch the itemstacks
+						ItemStack slotStack = getItemStack();
+						setItemStack(inventory.getInteractingPlayer().cursorItemStack);
+						inventory.getInteractingPlayer().cursorItemStack = slotStack;
+					} else {
+						// Try to stack the two itemstacks
+						addStack(inventory.getInteractingPlayer().cursorItemStack);
+						inventory.getInteractingPlayer().cursorItemStack = null;
+					}
+				}
+				return false;
+			}
+		});
+
+		slotImage.addListener(new InputListener() {
+			@Override
+			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+				if (inventory.getInteractingPlayer().cursorItemStack != null) {
+					setItemStack(inventory.getInteractingPlayer().cursorItemStack);
+					inventory.getInteractingPlayer().cursorItemStack = null;
+				}
 				return false;
 			}
 		});
@@ -68,7 +97,7 @@ public class Slot {
 	public void setDisplayPos(Vector2 displayPos) {
 		this.displayPos = displayPos;
 
-		this.amountLabel.setPosition(displayPos.x + 20, displayPos.y + 8);
+		this.amountLabel.setPosition(displayPos.x + 20, displayPos.y - 1);
 		this.slotImage.setPosition(displayPos.x, displayPos.y);
 		this.itemImage.setPosition(displayPos.x, displayPos.y);
 	}
@@ -81,7 +110,7 @@ public class Slot {
 			this.itemImage.setScale(2);
 
 			this.amountLabel.setText(String.valueOf(getItemStack().getAmount()));
-			this.amountLabel.setX(displayPos.x + 30 - (amountLabel.getText().length * 7));
+			this.amountLabel.setX(displayPos.x + 31 - (amountLabel.getText().length * 7));
 		} else {
 			this.itemImage.setDrawable(null);
 			this.amountLabel.setText("");

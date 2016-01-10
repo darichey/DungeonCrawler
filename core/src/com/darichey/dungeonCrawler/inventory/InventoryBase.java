@@ -1,5 +1,6 @@
 package com.darichey.dungeonCrawler.inventory;
 
+import com.darichey.dungeonCrawler.entity.living.EntityPlayer;
 import com.darichey.dungeonCrawler.item.stack.ItemStack;
 
 import java.util.ArrayList;
@@ -9,6 +10,8 @@ import java.util.ArrayList;
  */
 public abstract class InventoryBase {
 	private ArrayList<Slot> slots = new ArrayList<Slot>();
+	/** The player interacting with this inventory **/
+	private EntityPlayer interactingPlayer;
 
 	public InventoryBase() {
 
@@ -55,5 +58,13 @@ public abstract class InventoryBase {
 		if (!getSlots().contains(slot)) {
 			getSlots().add(slot);
 		}
+	}
+
+	public EntityPlayer getInteractingPlayer() {
+		return interactingPlayer;
+	}
+
+	public void setInteractingPlayer(EntityPlayer player) {
+		this.interactingPlayer = player;
 	}
 }

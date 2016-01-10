@@ -1,13 +1,14 @@
 package com.darichey.dungeonCrawler.screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.darichey.dungeonCrawler.event.EventManager;
 import com.darichey.dungeonCrawler.gui.GuiHUD;
-import com.darichey.dungeonCrawler.gui.fragment.FragmentHotbar;
 import com.darichey.dungeonCrawler.handler.*;
 import com.darichey.dungeonCrawler.init.Entities;
 import com.darichey.dungeonCrawler.init.Items;
@@ -21,7 +22,8 @@ import com.darichey.dungeonCrawler.world.World;
 public class GameScreen extends ScreenAdapter {
 	private World world;
 	private WorldRenderer worldRenderer;
-	public static GuiRenderer guiRenderer;
+	private GuiRenderer guiRenderer;
+	private Stage stage;
 	private HandlerBase movementHandler;
 	private HandlerBase collisionHandler;
 	private InputHandler inputHandler;
@@ -38,11 +40,16 @@ public class GameScreen extends ScreenAdapter {
 		movementHandler = new MovementHandler(world.player);
 		collisionHandler = new CollisionHandler(world);
 		inputHandler = new InputHandler(world, worldRenderer.camera);
+		stage = new Stage();
 
-		Gdx.input.setInputProcessor(inputHandler);
+		guiRenderer.setGui(new GuiHUD(stage, world.player));
+
 		EventManager.register(new EventListener());
-		guiRenderer.showGui(new GuiHUD(world.player));
-		guiRenderer.getCurrentGui().addFragment(new FragmentHotbar(world.player));
+
+		InputMultiplexer multiplexer = new InputMultiplexer();
+		multiplexer.addProcessor(inputHandler);
+		multiplexer.addProcessor(stage);
+		Gdx.input.setInputProcessor(multiplexer);
 	}
 
 	public void update(float delta) {
